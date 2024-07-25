@@ -36,8 +36,10 @@
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
+- google map API/geocoder
 
 ## 使用素材
-・外部サービスの画像素材等のURL
-・使用しない場合は、この項目を削除
+- まだ不明
+- 外部サービスの画像素材等のURL
+- 使用しない場合は、この項目を削除
 
