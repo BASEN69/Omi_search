@@ -1,2 +1,28 @@
-<h1>Post#index</h1>
-<p>Find me in app/views/post/index.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-8">
+      <h2>投稿一覧</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">商品画像</th>
+            <th scope="col">商品名</th>
+            <th scope="col">商品説明</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.each do |post| %>
+          <tr>
+            <th scope="col"><%= image_tag post.images[0], :size =>'100x100' %></th>
+            <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
+            <th scope="col"><%= post.introduction %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-2">
+
+    </div>
+  </div>
+</div>
