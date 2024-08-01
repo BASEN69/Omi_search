@@ -1,16 +1,57 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Port</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>オミサーチ</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="https://kit.fontawesome.com/ab55497b72.js" crossorigin="anonymous"></script>
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+    <header>
+      <div class="container-fluid">
+        <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
+          <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
+            <div class="offset-6 col-3">
+              <div class="row list-inline">
+                <li class="list-inline-item p-2">
+                  <%= link_to root_path, class: 'link-item text-white' do %>
+                    <i class="fa-solid fa-house"></i> Home <% end %>
+                </li>
+                </li>
+                <li class="list-inline-item p-2">
+                  <%= link_to about_path, class: 'link-item text-white' do %>
+                    <i class="fa-solid fa-link"></i> About<% end %>
+                </li>
+                <li class="list-inline-item p-2">
+                  <%= link_to root_path, class: 'link-item text-white' do %>
+                    <i class="fa-solid fa-house"></i> 投稿一覧（編集必要） <% end %>
+                </li>
+              </div>
+            </div>
+        </nav>
+      </div>
+    </header>
     <%= yield %>
   </body>
+  <footer class="mt-5 pt-5 pb-4" style="background-color: #ff9900">
+    <div class="container">
+      <div class="col-md-4">
+            <p>お土産情報を共有する善意あるサイト</p>
+      </div>
+         <div class="col-md-8">
+          <h6 class="text-white mt-2 mb-3">Link</h6>
+          <ul class="p-0 list-unstyled">
+            <li>
+              <a href="" title="License informations" class="text-white-50">使用素材</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </html>
