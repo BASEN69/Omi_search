@@ -8,6 +8,7 @@
             <th scope="col">商品画像</th>
             <th scope="col">商品名</th>
             <th scope="col">商品説明</th>
+            <th scope="col">タグ</th>
           </tr>
         </thead>
         <tbody>
@@ -16,6 +17,7 @@
             <th scope="col"><%= image_tag post.images[0], :size =>'100x100' %></th>
             <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
             <th scope="col"><%= post.introduction %></th>
+            <th scope="col"><%= post.category %></th>
           </tr>
           <% end %>
         </tbody>
