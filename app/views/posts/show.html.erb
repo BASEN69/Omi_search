@@ -1,2 +1,43 @@
-<h1>Post#show</h1>
-<p>Find me in app/views/post/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <% if @post.images.attached? %>
+      <% @post.images.each do |image| %>
+        <div class="col">
+          <%= image_tag image, size: "300x300" %>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col">
+        <%= image_tag 'no_image', size: "300x300" %>
+      </div>
+    <% end %>
+  </div>
+  <br><br>
+  <div class="row">
+    <div class="col-3 mt-5">
+      <h2>商品名</h2>
+      <%= @post.name %>
+    </div>
+    <div class="col-8 mt-5">
+      <h2>商品説明</h2>
+      <%= @post.introduction %>
+    </div>
+  </div><br>
+  <div class="row">
+    <div class="col-3 mt-5">
+      <h2>タグ</h2>
+      <%= @post.category %>
+    </div>
+    <div class="col-8 mt-5">
+      <h3>投稿ユーザー</h3>
+      <%= link_to user_path(@post.user.id) do %>
+        <%= @post.user.nick_name %><% end %>
+    </div><br>
+  </div>
+  <div class="offset-10 col">
+    <p><%=link_to '投稿一覧へ', posts_path %></p>
+  </div>
+    
+
+
+</div>

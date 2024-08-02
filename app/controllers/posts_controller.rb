@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
-  before_action :ensure_current_user, only: [:edit, :updete, :destroy]
+
+  before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
   def new
     @post = Post.new
@@ -22,6 +23,7 @@ class PostsController < ApplicationController
 
   def show
     @post = Post.find(params[:id])
+
   end
 
   def edit
@@ -38,15 +40,23 @@ class PostsController < ApplicationController
     end
   end
 
-  def destory
+  def destroy
     post = Post.find(params[:id])
     post.destroy
-    redirect_to posts_path
+    redirect_to mypage_path
   end
 
   private
 
   def post_params
-    params.require(:post).permit(:name, :introduction, :category, {images: []})
+    params.require(:post).permit(:name, :introduction, :category, images: [])
+  end
+
+  def ensure_current_user
+    @post = Post.find(params[:id])
+    unless @post.user == current_user
+      flash[:alert] = "あなたはこの投稿を編集する権限がありません"
+      redirect_to posts_path
+    end
   end
 end

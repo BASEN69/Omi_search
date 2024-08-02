@@ -1,2 +1,42 @@
-<h1>Post#edit</h1>
-<p>Find me in app/views/post/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <% if @post.errors.any? %>
+        <ul class="alert alert-danger" role="alert">
+          <h6 class="alert-heading">
+            <%= @post.errors.count %>件のエラーが起きました
+          </h6>
+          <%= @post.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_with model: @post do |f| %>
+        <div class="form-group">
+          <%= f.label :"商品名" %>
+          <%= f.text_field :name, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"商品説明文" %>
+          <%= f.text_area :introduction, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"タグ" %>
+          <%= f.text_field :category, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.label :"商品画像" %><br>
+          <%= f.file_field :images, multiple: true, id: 'images' %><br><br>
+          
+        </div>
+
+        <p>後々、レビュー・緯度経度を追加</p>
+        
+        <div class="form-group">
+          <%= f.submit '更新', class: "btn btn-success" %><br><br>
+          <%= link_to "Show", post_path(params[:id]) %> | <%= link_to "Back", :back %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -26,8 +26,8 @@
         </div>
         <div class="form-group">
           <%= f.label :"商品画像" %><br>
-          <%= f.file_field :images, name: 'post[images][]', data: {index: 0}, accept: "image/*" %><br><br>
-          <%= f.file_field :images, name: 'post[images][]', data: {index: 1}, accept: "image/*" %>
+          <%= f.file_field :images, multiple: true, id: 'images' %><br><br>
+          
         </div>
 
         <p>後々、レビュー・緯度経度を追加</p>

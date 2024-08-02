@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-8">
+    <div class="col-md-10">
       <h2>投稿一覧</h2>
       <table class="table table-hover">
         <thead>
@@ -9,15 +9,23 @@
             <th scope="col">商品名</th>
             <th scope="col">商品説明</th>
             <th scope="col">タグ</th>
+            <th scope="col">投稿ユーザー</th>
           </tr>
         </thead>
         <tbody>
           <% @posts.each do |post| %>
           <tr>
-            <th scope="col"><%= image_tag post.images[0], :size =>'100x100' %></th>
+            <th scope="col">
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0], size: '100x100' %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </th>
             <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
             <th scope="col"><%= post.introduction %></th>
             <th scope="col"><%= post.category %></th>
+            <th scope="col"><%= post.user.nick_name %></th>
           </tr>
           <% end %>
         </tbody>

@@ -1,2 +1,54 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+
+<h1><%= @user == current_user ? 'My Page' : "#{@user.nick_name}　さんの投稿" %></h1>
+
+<div class="container">
+  <div class="row">
+    <h2>投稿一覧</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">商品画像</th>
+            <th scope="col">商品名</th>
+            <th scope="col">商品説明</th>
+            <th scope="col">タグ</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @user.posts.all.each do |post| %>
+          <tr>
+            <th scope="col">
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0], size: '100x100' %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </th>
+            <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
+            <th scope="col"><%= post.introduction %></th>
+            <th scope="col"><%= post.category %></th>
+            <% if post.user == current_user %>
+              <th scope="col"><%= link_to "編集", edit_post_path(post), class: "btn btn-success" %></a></th>
+              <th scope="col"><%= link_to "削除", post_path(post), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"  %></th>
+            <% end %>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+  </div>
+  <% if @user == current_user %>
+    <div class="row">
+      <div class="col">
+        <h2>登録情報</h2>
+        <p>氏名</p>
+        <%= @user.name %>
+        <p>ニックネーム</p>
+        <%= @user.nick_name %>
+        <p>e-mail</p>
+        <%= @user.email %><br>
+        <%= link_to '編集', edit_user_path(@user) %>
+      </div>
+    </div>
+  <% end %>
+</div>
