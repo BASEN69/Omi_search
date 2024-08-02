@@ -36,8 +36,13 @@
       <blockquote class="blockquote text-center">
       <h1>早速サイト利用しよう！</h1>
       <br><br>
-      <p>みんなの投稿をみてみよう！<br>投稿一覧<br><br>
-      自分のおススメを共有してみよう！<br>新規投稿<br><br>
+      <p>みんなの投稿をみてみよう！<br><%= link_to '投稿一覧', posts_path %><br><br>
+      自分のおススメを共有してみよう！<br>
+      <% if user_signed_in? %>
+        <%= link_to '新規投稿', new_post_path %><br><br>
+      <% else %>
+        <%= link_to '新規登録', new_user_registration_path %> | <%= link_to 'ログイン', new_user_session_path %><br><br>
+      <% end %>
       </p>
       </blockquote>
     </div>
