@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  before_action :authenticate_user!, only: [:new, :create]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
   def new
@@ -19,6 +19,7 @@ class PostsController < ApplicationController
 
   def index
     @posts = Post.all
+    
   end
 
   def show
@@ -33,7 +34,7 @@ class PostsController < ApplicationController
   def update
     @post = Post.find(params[:id])
     if @post.update(post_params)
-      flash[:notice] = "更新に成功しました"
+      flash[:notice] = "投稿の更新に成功しました"
       redirect_to post_path(@post.id)
     else
       render :edit
@@ -42,8 +43,12 @@ class PostsController < ApplicationController
 
   def destroy
     post = Post.find(params[:id])
-    post.destroy
-    redirect_to mypage_path
+    if post.destroy
+      flash[:notice] = "投稿の削除に成功しました"
+      redirect_to mypage_path
+    else
+      render :edit
+    end
   end
 
   private

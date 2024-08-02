@@ -25,7 +25,7 @@
             <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
             <th scope="col"><%= post.introduction %></th>
             <th scope="col"><%= post.category %></th>
-            <th scope="col"><%= post.user.nick_name %></th>
+            <th scope="col"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></th>
           </tr>
           <% end %>
         </tbody>
