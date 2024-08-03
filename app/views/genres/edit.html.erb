@@ -1,0 +1,13 @@
+<div class="container">
+  <div class="row">
+
+    <div class="form_group">
+      <p>このページは管理者限定にする</p><br>
+      <%= form_with model: @genre do |f| %>
+        <%= f.label :"ジャンル名" %>
+        <%= f.text_field :name %>
+        <%= f.submit :"更新", class: "btn btn-success" %>
+      <% end %>
+    </div>
+  </div>
+</div>
