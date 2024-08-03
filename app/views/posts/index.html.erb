@@ -10,6 +10,7 @@
             <th scope="col">商品説明</th>
             <th scope="col">タグ</th>
             <th scope="col">投稿ユーザー</th>
+            <th scope="col">ジャンル</th>
           </tr>
         </thead>
         <tbody>
@@ -26,6 +27,7 @@
             <th scope="col"><%= post.introduction %></th>
             <th scope="col"><%= post.category %></th>
             <th scope="col"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></th>
+            <th scope="col"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></th>
           </tr>
           <% end %>
         </tbody>

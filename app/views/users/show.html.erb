@@ -11,7 +11,7 @@
             <th scope="col">商品名</th>
             <th scope="col">商品説明</th>
             <th scope="col">タグ</th>
-            <th scope="col"></th>
+            <th scope="col">ジャンル</th>
             <th scope="col"></th>
           </tr>
         </thead>
@@ -28,6 +28,7 @@
             <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
             <th scope="col"><%= post.introduction %></th>
             <th scope="col"><%= post.category %></th>
+            <th scope="col"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></th>
             <% if post.user == current_user %>
               <th scope="col"><%= link_to "編集", edit_post_path(post), class: "btn btn-success" %></a></th>
               <th scope="col"><%= link_to "削除", post_path(post), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？"  %></th>

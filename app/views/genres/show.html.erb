@@ -1,2 +1,35 @@
-<h1>Genre#show</h1>
-<p>Find me in app/views/genre/show.html.erb</p>
+<div class="container">
+  <div class="row">
+    <h2><%= @genre.name %>の投稿一覧</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">商品画像</th>
+            <th scope="col">商品名</th>
+            <th scope="col">商品説明</th>
+            <th scope="col">タグ</th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genre.posts.all.each do |post| %>
+          <tr>
+            <th scope="col">
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0], size: '100x100' %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </th>
+            <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
+            <th scope="col"><%= post.introduction %></th>
+            <th scope="col"><%= post.category %></th>
+
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
+
+  </div>
+</div>

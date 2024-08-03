@@ -28,16 +28,20 @@
       <h2>タグ</h2>
       <%= @post.category %>
     </div>
-    <div class="col-8 mt-5">
+    <div class="col-4 mt-5">
       <h3>投稿ユーザー</h3>
       <%= link_to user_path(@post.user.id) do %>
         <%= @post.user.nick_name %><% end %>
+    </div>
+    <div class="col-3 mt-5">
+      <h3>ジャンル</h3>
+      <%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %>
     </div><br>
   </div>
   <div class="offset-10 col">
     <p><%=link_to '投稿一覧へ', posts_path %></p>
   </div>
-    
+
 
 
 </div>

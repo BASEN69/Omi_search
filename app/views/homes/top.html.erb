@@ -1,10 +1,43 @@
 <div class="container">
   <div class="row">
-    <div class="col-10">
-      <p>画像・新規投稿（５件）予定</p>
+    <div class="col-8">
+     <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">商品画像</th>
+            <th scope="col">商品名</th>
+            <th scope="col">商品説明</th>
+            <th scope="col">タグ</th>
+            <th scope="col">投稿ユーザー</th>
+            <th scope="col">ジャンル</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @posts.order(created_at: :desc).limit(5).each do |post| %>
+          <tr>
+            <th scope="col">
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0], size: '100x100' %>
+              <% else %>
+                <%= image_tag 'no_image', size: "100x100" %>
+              <% end %>
+            </th>
+            <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
+            <th scope="col"><%= post.introduction %></th>
+            <th scope="col"><%= post.category %></th>
+            <th scope="col"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></th>
+            <th scope="col"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
-    <div class="col-2">
-      <p>サイドバー予定</p>
+    <div class="offset-1 col-2">
+      <h4>ジャンル一覧</h4>
+      <% @genres.each do |genre| %>
+        <p><%= link_to genre_path(genre.id) do %><%= genre.name %><% end %></p>
+      <% end %>
     </div>
   </div>
 </div>
