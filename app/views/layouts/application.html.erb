@@ -17,42 +17,42 @@
         <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
           <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
           <p>検索欄</p>
-            <div class="offset-3 col-6">
+            <div class="offset-5 col-6">
               <div class="row list-inline">
                 <li class="list-inline-item p-2">
                   <%= link_to root_path, class: 'link-item text-white' do %>
-                    <i class="fa-solid fa-house"></i> Home <% end %>
+                    <i class="fa-solid fa-house"></i> トップページ <% end %>
                 </li>
                 </li>
                 <li class="list-inline-item p-2">
                   <%= link_to about_path, class: 'link-item text-white' do %>
-                    <i class="fa-solid fa-link"></i> About<% end %>
+                    <i class="fa-solid fa-link"></i> アバウト<% end %>
                 </li>
                 <li class="list-inline-item p-2">
                   <%= link_to posts_path, class: 'link-item text-white' do %>
-                    投稿一覧（編集必要） <% end %>
+                    <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
                 </li>
                 <% if user_signed_in? %>
                   <li class="list-inline-item p-2">
                     <%= link_to mypage_path, class: 'link-item text-white' do %>
-                      マイページ <% end %>
+                      <i class="fa-solid fa-user"></i> マイページ <% end %>
                   </li>
                   <li class="list-inline-item p-2">
                     <%= link_to new_post_path, class: 'link-item text-white' do %>
-                      新規投稿 <% end %>
+                      <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
                   </li>
                   <li class="list-inline-item p-2">
                     <%= link_to destroy_user_session_path,method: :delete, class: 'link-item text-white' do %>
-                      ログアウト<% end %>
+                      <i class="fa-solid fa-right-from-bracket"></i> ログアウト<% end %>
                   </li>
                 <% else %>
                   <li class="list-inline-item p-2">
                     <%= link_to new_user_registration_path, class: 'link-item text-white' do %>
-                      新規登録 <% end %>
+                      <i class="fa-solid fa-user-plus"></i> 新規登録 <% end %>
                   </li>
                   <li class="list-inline-item p-2">
                     <%= link_to new_user_session_path, class: 'link-item text-white' do %>
-                      ログイン <% end %>
+                      <i class="fa-solid fa-right-to-bracket"></i> ログイン <% end %>
                   </li>
                 <% end %>
               </div>
