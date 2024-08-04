@@ -1,47 +1,62 @@
 <div class="container">
   <div class="row">
-    <% if @post.images.attached? %>
-      <% @post.images.each do |image| %>
-        <div class="col">
-          <%= image_tag image, size: "300x300" %>
+
+
+
+            <% if @post.images.attached? %>
+              <% @post.images.each do |image| %>
+                <div class="mb-5">
+                  <div class="card mr-5">
+                    <%= image_tag image, size: "300x300" %>
+                  </div>
+                </div>
+              <% end %>
+            <% else %>
+              <div class="mb-3">
+                <%= image_tag 'no_image', size: "300x300" %>
+              </div>
+            <% end %>
+
+
+  </div>
+
+  <div class="col-12">
+
+    
+        <div class="row">
+          <div class="col-11">
+            <table class="table table-bordered mb-3">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col" style="width: 40%">商品名</th>
+                  <th scope="col" style="width: 60%">商品説明</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @post.name %></td>
+                  <td style="width: 60%;word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="table table-bordered">
+              <thead>
+                <tr class="table-active">
+                  <th scope="col" style="width: 33%">タグ</th>
+                  <th scope="col" style="width: 33%">ユーザー</th>
+                  <th scope="col" style="width: 33%">都道府県</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><%= @post.category %></td>
+                  <td><%= link_to user_path(@post.user_id) do %><%= @post.user.nick_name %><% end %></td>
+                  <td><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
-      <% end %>
-    <% else %>
-      <div class="col">
-        <%= image_tag 'no_image', size: "300x300" %>
-      </div>
-    <% end %>
+     
   </div>
-  <br><br>
-  <div class="row">
-    <div class="col-3 mt-5">
-      <h2>商品名</h2>
-      <%= @post.name %>
-    </div>
-    <div class="col-8 mt-5">
-      <h2>商品説明</h2>
-      <%= @post.introduction %>
-    </div>
-  </div><br>
-  <div class="row">
-    <div class="col-3 mt-5">
-      <h2>タグ</h2>
-      <%= @post.category %>
-    </div>
-    <div class="col-4 mt-5">
-      <h3>投稿ユーザー</h3>
-      <%= link_to user_path(@post.user.id) do %>
-        <%= @post.user.nick_name %><% end %>
-    </div>
-    <div class="col-3 mt-5">
-      <h3>都道府県</h3>
-      <%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %>
-    </div><br>
-  </div>
-  <div class="offset-10 col">
-    <p><%=link_to '投稿一覧へ', posts_path %></p>
-  </div>
-
-
-
 </div>

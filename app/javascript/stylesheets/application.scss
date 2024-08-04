@@ -24,3 +24,9 @@
   margin-bottom: 16px;
 }
 
+.table td {
+  word-wrap: break-word;
+  white-space: normal;
+  overflow-wrap: break-word;
+  max-width: 100%;
+}

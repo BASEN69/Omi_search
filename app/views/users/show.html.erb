@@ -51,6 +51,7 @@
                         </tr>
                       </tbody>
                     </table>
+                    <p><%= link_to "詳細を見る", post_path(post.id) %></p>
                   </div>
                 </div>
               </div>
@@ -62,16 +63,34 @@
       </div>
     </div>
     <% if @user == current_user %>
+      <p class="mt-5">
+        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample"><%= current_user.nick_name %> さんの登録情報</a>
+      </p>
       <div class="row">
         <div class="col">
-          <h2>登録情報</h2>
-          <p>氏名</p>
-          <%= @user.name %>
-          <p>ニックネーム</p>
-          <%= @user.nick_name %>
-          <p>e-mail</p>
-          <%= @user.email %><br>
-          <%= link_to '編集', edit_user_path(@user) %>
+          <div class="collapse multi-collapse" id="multiCollapseExample">
+            <div class="card card-body">
+              <div class="col-md-10">
+                <table class="table table-bordered mb-3">
+                  <thead>
+                    <tr class="table-active">
+                      <th scope="col" style="width: 30%">氏名</th>
+                      <th scope="col" style="width: 30%">ニックネーム</th>
+                      <th scope="col" style="width: 40%">e-mail</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td><%= @user.name %></td>
+                      <td><%= @user.nick_name %></td>
+                      <td><%= @user.email %></td>
+                    </tr>
+                  </tbody>
+                </table>
+                <p><%= link_to '編集', edit_user_path(@user), class: 'btn btn-success' %></p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     <% end %>
