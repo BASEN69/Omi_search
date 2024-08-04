@@ -18,8 +18,8 @@ class PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all
-    
+    @posts = Post.page(params[:page])
+    @genres = Genre.all
   end
 
   def show

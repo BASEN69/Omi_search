@@ -1,41 +1,21 @@
-<div class="container">
+<div class="container mt-4">
   <div class="row">
-    <div class="col-md-10">
-      <h2>投稿一覧</h2>
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">商品画像</th>
-            <th scope="col">商品名</th>
-            <th scope="col">商品説明</th>
-            <th scope="col">タグ</th>
-            <th scope="col">投稿ユーザー</th>
-            <th scope="col">ジャンル</th>
-          </tr>
-        </thead>
-        <tbody>
-          <% @posts.each do |post| %>
-          <tr>
-            <th scope="col">
-              <% if post.images.attached? %>
-                <%= image_tag post.images[0], size: '100x100' %>
-              <% else %>
-                <%= image_tag 'no_image', size: "100x100" %>
-              <% end %>
-            </th>
-            <th scope="col"><%= link_to post.name, post_path(post.id) %></th>
-            <th scope="col"><%= post.introduction %></th>
-            <th scope="col"><%= post.category %></th>
-            <th scope="col"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></th>
-            <th scope="col"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></th>
-          </tr>
-          <% end %>
-        </tbody>
-      </table>
-
+    <div class="col-md-9">
+      <h2 class="mb-5">投稿一覧</h2>
+      <div class="row">
+        <%= render 'list', posts: @posts %>
+      </div>
     </div>
-    <div class="col-2">
 
+    <div class="col-md-3">
+      <h3>都道府県</h3>
+      <ul class="list-group">
+        <% @genres.each do |genre| %>
+          <li class="list-group-item">
+            <%= link_to genre.name, genre_path(genre.id) %>
+          </li>
+        <% end %>
+       </ul>
     </div>
   </div>
 </div>

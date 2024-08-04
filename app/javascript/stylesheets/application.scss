@@ -5,3 +5,22 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+.card {
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  border-radius: 8px;
+}
+
+.card-body {
+  padding: 16px;
+}
+
+.img-fluid {
+  max-width: 100%;
+  height: auto;
+}
+
+.table {
+  margin-bottom: 16px;
+}
+

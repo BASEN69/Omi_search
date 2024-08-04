@@ -29,7 +29,7 @@
           <%= f.file_field :images, multiple: true, id: 'images' %><br><br>
         </div>
         <div class="form-group">
-          <%= f.label :genre_id, "ジャンル" %><br>
+          <%= f.label :genre_id, "都道府県" %><br>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択", class: "form-control" %>
         </div>
 

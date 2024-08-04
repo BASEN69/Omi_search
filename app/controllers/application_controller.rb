@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
 
   
   def after_sign_out_path_for(resource)
-    about_path
+    new_user_registration_path
   end
   
   protected
