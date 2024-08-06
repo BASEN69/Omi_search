@@ -41,9 +41,7 @@ class GenresController < ApplicationController
     @genre = Genre.find(params[:id])
     if @genre.destroy
       flash[:notice] = "ジャンルの削除に成功しました"
-      redirect_to :index
-    else
-      render :edit
+      redirect_to genres_path
     end
   end
 

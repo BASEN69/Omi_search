@@ -1,9 +1,9 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-    <h2 class="mb-5">最新投稿（５件)</h2>
+    <h2 class="mb-5">最新投稿（７件)</h2>
      <div class="row">
-      <% @posts.order(created_at: :desc).limit(5).each do |post| %>
+      <% @posts.order(created_at: :desc).limit(7).each do |post| %>
         <div class="col-md-12 mb-4">
           <div class="card">
             <div class="card-body">
