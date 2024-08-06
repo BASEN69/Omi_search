@@ -1,50 +1,42 @@
 <div class="container">
   <div class="row">
-
-
-
-            <% if @post.images.attached? %>
-              <% @post.images.each do |image| %>
-                <div class="mb-5">
-                  <div class="card mr-5">
-                    <%= image_tag image, size: "300x300" %>
-                  </div>
-                </div>
-              <% end %>
-            <% else %>
-              <div class="mb-3">
-                <%= image_tag 'no_image', size: "300x300" %>
-              </div>
-            <% end %>
-
-
+    <% if @post.images.attached? %>
+      <% @post.images.each do |image| %>
+        <div class="mb-5">
+          <div class="card mr-5">
+            <%= image_tag image, size: "300x300" %>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="mb-3">
+        <%= image_tag 'no_image', size: "300x300" %>
+      </div>
+    <% end %>
   </div>
-
   <div class="col-12">
-
-    
         <div class="row">
           <div class="col-11">
             <table class="table table-bordered mb-3">
               <thead>
                 <tr class="table-active">
-                  <th scope="col" style="width: 40%">商品名</th>
-                  <th scope="col" style="width: 60%">商品説明</th>
+                  <th scope="col" style="width: 30%">商品名</th>
+                  <th scope="col" style="width: 70%">商品説明</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td><%= @post.name %></td>
-                  <td style="width: 60%;word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
+                  <td style="width: 60%; word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
                 </tr>
               </tbody>
             </table>
             <table class="table table-bordered">
               <thead>
                 <tr class="table-active">
-                  <th scope="col" style="width: 33%">タグ</th>
-                  <th scope="col" style="width: 33%">ユーザー</th>
                   <th scope="col" style="width: 33%">都道府県</th>
+                  <th scope="col" style="width: 33%">市町村</th>
+                  <th scope="col" style="width: 33%">ユーザー</th>
                 </tr>
               </thead>
               <tbody>
@@ -57,6 +49,6 @@
             </table>
           </div>
         </div>
-     
+
   </div>
 </div>

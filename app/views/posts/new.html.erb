@@ -14,19 +14,22 @@
       <%= form_with model: @post do |f| %>
         <div class="form-group">
           <%= f.label :"商品名" %>
-          <%= f.text_field :name, class: "form-control" %>
+          <%= f.text_field :name, class: "form-control", placeholder: "商品の名前を入力してください" %>
         </div>
         <div class="form-group">
           <%= f.label :"商品説明文" %>
-          <%= f.text_area :introduction, class: "form-control" %>
+          <%= f.text_area :introduction, class: "form-control", placeholder: "商品の簡単な説明を入力してください" %>
         </div>
         <div class="form-group">
-          <%= f.label :"タグ" %>
-          <%= f.text_field :category, class: "form-control" %>
+          <%= f.label :"市町村" %>
+          <%= f.text_field :category, class: "form-control", placeholder: "〇〇市などと市町村を入力してください" %>
+          <small>※　購入した市町村（〇〇市や〇〇町や〇〇村）のみ入力してください</small><br>
+          <small class="font-weight-bold">例:　川越市で購入した場合「川越市」と入力</small>
         </div>
         <div class="form-group">
           <%= f.label :"商品画像" %><br>
-          <%= f.file_field :images, multiple: true, id: 'images' %><br><br>
+          <%= f.file_field :images, multiple: true, id: 'images' %><br>
+          <small>※画像を3枚まで選択可能です</small><br><br>
         </div>
         <div class="form-group">
           <%= f.label :genre_id, "都道府県" %><br>
