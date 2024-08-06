@@ -1,6 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-10">
+      <h1>投稿内容の編集</h1>
       <% if @post.errors.any? %>
         <ul class="alert alert-danger" role="alert">
           <h6 class="alert-heading">
@@ -29,7 +30,7 @@
         <div class="form-group">
           <%= f.label :"商品画像" %><br>
           <%= f.file_field :images, multiple: true, id: 'images' %><br>
-          <small>※画像を3枚まで選択可能です</small><<br><br>
+          <small>※画像を3枚まで選択可能です</small><br><br>
         </div>
         <div class="form-group">
           <%= f.label :genre_id, "都道府県" %><br>

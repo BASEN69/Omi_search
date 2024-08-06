@@ -17,67 +17,62 @@
         <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
           <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
           <p>検索欄</p>
-            <div class="offset-5 col-6">
+            <div class="offset-8">
               <div class="row list-inline">
-                <li class="list-inline-item p-2">
-                  <%= link_to root_path, class: 'link-item text-white' do %>
-                    <i class="fa-solid fa-house"></i> トップページ <% end %>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー <i class="fa-solid fa-bars"></i></a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <%= link_to root_path, class: 'dropdown-item ' do %>
+                      <i class="fa-solid fa-house"></i> トップページ <% end %>
+                    <%= link_to about_path, class: 'dropdown-item ' do %>
+                      <i class="fa-solid fa-link"></i> アバウト<% end %>
+                    <div class="dropdown-divider"></div>
+                    <%= link_to posts_path, class: 'dropdown-item ' do %>
+                      <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
+                    <% if user_signed_in? %>
+                      <%= link_to mypage_path, class: 'dropdown-item' do %>
+                        <i class="fa-solid fa-user"></i> マイページ <% end %>
+                      <%= link_to new_post_path, class: 'dropdown-item' do %>
+                        <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to destroy_user_session_path,method: :delete, class: 'dropdown-item' do %>
+                        <i class="fa-solid fa-right-from-bracket"></i> ログアウト<% end %>
+                    <% else %>
+                      <div class="dropdown-divider"></div>
+                      <%= link_to new_user_registration_path, class: 'dropdown-item' do %>
+                        <i class="fa-solid fa-user-plus"></i> 新規登録 <% end %>
+                      <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+                        <i class="fa-solid fa-right-to-bracket"></i> ログイン <% end %>
+                    <% end %>
+
+                  </div>
                 </li>
-                </li>
-                <li class="list-inline-item p-2">
-                  <%= link_to about_path, class: 'link-item text-white' do %>
-                    <i class="fa-solid fa-link"></i> アバウト<% end %>
-                </li>
-                <li class="list-inline-item p-2">
-                  <%= link_to posts_path, class: 'link-item text-white' do %>
-                    <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
-                </li>
-                <% if user_signed_in? %>
-                  <li class="list-inline-item p-2">
-                    <%= link_to mypage_path, class: 'link-item text-white' do %>
-                      <i class="fa-solid fa-user"></i> マイページ <% end %>
-                  </li>
-                  <li class="list-inline-item p-2">
-                    <%= link_to new_post_path, class: 'link-item text-white' do %>
-                      <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
-                  </li>
-                  <li class="list-inline-item p-2">
-                    <%= link_to destroy_user_session_path,method: :delete, class: 'link-item text-white' do %>
-                      <i class="fa-solid fa-right-from-bracket"></i> ログアウト<% end %>
-                  </li>
-                <% else %>
-                  <li class="list-inline-item p-2">
-                    <%= link_to new_user_registration_path, class: 'link-item text-white' do %>
-                      <i class="fa-solid fa-user-plus"></i> 新規登録 <% end %>
-                  </li>
-                  <li class="list-inline-item p-2">
-                    <%= link_to new_user_session_path, class: 'link-item text-white' do %>
-                      <i class="fa-solid fa-right-to-bracket"></i> ログイン <% end %>
-                  </li>
-                <% end %>
               </div>
             </div>
         </nav>
       </div>
     </header>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <%= yield %>
-  </body>
-  <footer class="mt-5 pt-5 pb-4" style="background-color: #ff9900">
-    <div class="container">
-      <div class="col-md-4">
-            <p>お土産情報を共有する善意あるサイト</p>
-      </div>
-         <div class="col-md-8">
-          <h6 class="text-white mt-2 mb-3">Link</h6>
-          <ul class="p-0 list-unstyled">
-            <li>
-              <a href="" title="License informations" class="text-white-50">使用素材</a>
-            </li>
-          </ul>
+
+    <main class="container mt-3">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
+    <footer class="mt-5 pt-5 pb-4" style="background-color: #ff9900">
+      <div class="container">
+        <div class="col-md-4">
+              <p>お土産情報を共有する善意あるサイト</p>
+        </div>
+           <div class="col-md-8">
+            <h6 class="text-white mt-2 mb-3">Link</h6>
+            <ul class="p-0 list-unstyled">
+              <li>
+                <a href="" title="License informations" class="text-white-50">使用素材</a>
+              </li>
+            </ul>
+          </div>
         </div>
       </div>
-    </div>
-  </footer>
+    </footer>
+  </body>
 </html>
