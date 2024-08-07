@@ -1,9 +1,30 @@
 <div class="container">
   <div class="row">
     <div class="col-md-9">
-    <h2 class="mb-5">最新投稿（７件)</h2>
+      <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <%= image_tag 'middle-photo0000-4715.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'First slide', aria: { label: 'Placeholder: First slide' } %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'middle-photo0000-6253.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Second slide', aria: { label: 'Placeholder: Second slide' } %>
+          </div>
+          <div class="carousel-item">
+            <%= image_tag 'middle-photo0000-7478.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Third slide', aria: { label: 'Placeholder: Third slide' } %>
+          </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleControls" role="button" data-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="sr-only">Next</span>
+        </a>
+      </div>
+    <h2 class="mb-5 mt-5 text-center">最新投稿（5件)</h2>
      <div class="row">
-      <% @posts.order(created_at: :desc).limit(7).each do |post| %>
+      <% @posts.order(created_at: :desc).limit(5).each do |post| %>
         <div class="col-md-12 mb-4">
           <div class="card">
             <div class="card-body">
@@ -40,9 +61,9 @@
                     </thead>
                     <tbody>
                       <tr>
+                        <td><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></td>
                         <td><%= post.category %></td>
                         <td><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></td>
-                        <td><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></td>
                       </tr>
                     </tbody>
                   </table>
