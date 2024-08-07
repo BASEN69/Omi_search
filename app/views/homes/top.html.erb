@@ -4,13 +4,28 @@
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <%= image_tag 'middle-photo0000-4715.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'First slide', aria: { label: 'Placeholder: First slide' } %>
+            <div class="overlay-container">
+              <%= image_tag 'middle-photo0000-7478.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'First slide', aria: { label: 'Placeholder: First slide' } %>
+              <div class="overlay">
+                <div class="overlay-text">旅先の思い出に</div>
+              </div>
+            </div>
           </div>
           <div class="carousel-item">
-            <%= image_tag 'middle-photo0000-6253.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Second slide', aria: { label: 'Placeholder: Second slide' } %>
+            <div class="overlay-container">
+              <%= image_tag 'middle-photo0000-6253.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Second slide', aria: { label: 'Placeholder: Second slide' } %>
+              <div class="overlay">
+                <div class="overlay-text">楽しさのお裾分けに</div>
+              </div>
+            </div>
           </div>
           <div class="carousel-item">
-            <%= image_tag 'middle-photo0000-7478.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Third slide', aria: { label: 'Placeholder: Third slide' } %>
+            <div class="overlay-container">
+              <%= image_tag 'akabeko.png', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Third slide', aria: { label: 'Placeholder: Third slide' } %>
+              <div class="overlay">
+                <div class="overlay-text">お土産探してみませんか？</div>
+              </div>
+            </div>
           </div>
         </div>
         <a class="carousel-control-prev" href="#carouselExampleControls" role="button" data-slide="prev">
@@ -22,7 +37,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-    <h2 class="mb-5 mt-5 text-center">最新投稿（5件)</h2>
+    <h2 class="mb-5 mt-5 text-center"><u>最新投稿（5件)</u></h2>
      <div class="row">
       <% @posts.order(created_at: :desc).limit(5).each do |post| %>
         <div class="col-md-12 mb-4">
