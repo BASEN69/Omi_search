@@ -37,7 +37,7 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-    <h2 class="mb-5 mt-5 text-center"><u>最新投稿（5件)</u></h2>
+    <h2 class="mb-5 mt-5 text-center"><u class="new-post">最新投稿（５件)</u></h2>
      <div class="row">
       <% @posts.order(created_at: :desc).limit(5).each do |post| %>
         <div class="col-md-12 mb-4">
