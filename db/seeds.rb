@@ -5,3 +5,19 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+mike = User.find_or_create_by!(email: "mike@example.com") do |user|
+  user.name = "mike"
+  user.nick_name = "mike"
+  user.password = "password"
+end
+
+Genre.find_or_create_by!(name: "北海道") do |genre|
+end
+
+Post.find_or_create_by!(name: "ままどーる") do |post|
+  post.introduction = "クリーミーな洋菓子って感じで美味しい！"
+  post.category = "会津若松市"
+  post.user = mike
+  post.genre = "北海道"
+end
