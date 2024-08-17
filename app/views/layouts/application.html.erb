@@ -15,9 +15,13 @@
     <header>
       <div class="container-fluid">
         <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
-          <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
-          <p>検索欄</p>
-            <div class="offset-8">
+          <div class="offset-1">
+            <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
+          </div>
+          <div class="col-1 d-flex justify-content-center md-2">
+            <%= render "searches/form" %>
+          </div>
+            <div class="offset-6">
               <div class="row list-inline">
                 <li class="nav-item dropdown">
                   <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー <i class="fa-solid fa-bars"></i></a>

@@ -6,6 +6,14 @@ class User < ApplicationRecord
 
   has_many :posts, dependent: :destroy
 
+  def self.search_for(content, method)
+    if method == 'partial'
+      User.where('nick_name LIKE ?', '%' + content + '%')
+    elsif method == 'perfect'
+      User.where(nick_name: content)
+    end
+  end
+
   validates :name, uniqueness: true, length: 2..20
   validates :nick_name, uniqueness: true, length: 2..10
 end

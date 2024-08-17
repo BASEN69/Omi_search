@@ -1,0 +1,79 @@
+<% if @model == 'post' %>
+  <h3>投稿の検索内容 "<%= @content %>"</h3>
+  <% @records.each do |post| %>
+    <div class="col-md-12 mb-4">
+      <div class="card">
+        <div class="card-body">
+          <div class="row">
+            <div class="col-md-3">
+              <% if post.images.attached? %>
+                <%= image_tag post.images[0], size: '200x200', class: 'img-fluid card-img-top' %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', size: '200x200', class: 'img-fluid card-img-top' %>
+              <% end %>
+            </div>
+            <div class="col-md-9">
+              <table class="table table-bordered mb-3">
+                <thead>
+                  <tr class="table-active">
+                    <th scope="col" style="width: 30%">商品名</th>
+                    <th scope="col" style="width: 70%">商品説明</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= post.name %></td>
+                    <td><%= link_to post.introduction.truncate(15, omission: "...続きを読む"), post_path(post.id) %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <table class="table table-bordered">
+                <thead>
+                  <tr class="table-active">
+                    <th scope="col" style="width: 33%">都道府県</th>
+                    <th scope="col" style="width: 33%">市町村</th>
+                    <th scope="col" style="width: 33%">ユーザー</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><%= link_to post.genre.name, genre_path(post.genre.id) %></td>
+                    <td><%= post.category %></td>
+                    <td><%= link_to post.user.nick_name, user_path(post.user_id) %></td>
+                  </tr>
+                </tbody>
+              </table>
+              <p><%= link_to "詳細を見る", post_path(post.id) %></p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  <div class="mt-4">
+    <%= paginate @records %>
+  </div>
+
+<% elsif @model == 'user' %>
+  <h3 class="mb-4">ユーザーの検索結果: "<%= @content %>"</h3>
+  <div class="container">
+    <div class="row">
+      <% @records.each do |user| %>
+        <div class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body text-center">
+              <%= link_to user_path(user), class: 'stretched-link' do %>
+                <h5 class="card-title"><%= user.nick_name %></h5>
+                <p class="card-text">クリックして詳細を見る</p>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+  <div class="mt-4">
+    <%= paginate @records %>
+  </div>
+<% end %>
+

@@ -8,6 +8,9 @@ class UsersController < ApplicationController
     render :show
   end
 
+  def index
+    @users = User.all
+  end
 
 
   def show

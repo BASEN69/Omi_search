@@ -10,6 +10,15 @@ class Post < ApplicationRecord
   FILE_NUMBER_LIMIT = 3
 
   validate :validate_number_of_files
+
+  def self.search_for(content, method)
+    if method == 'partial'
+      Post.where('name LIKE ?', '%' + content + '%')
+    elsif method == 'perfect'
+      Post.where(name: content)
+    end
+  end
+
   private
 
   def validate_number_of_files
