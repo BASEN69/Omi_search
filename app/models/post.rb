@@ -13,9 +13,9 @@ class Post < ApplicationRecord
 
   def self.search_for(content, method)
     if method == 'partial'
-      Post.where('name LIKE ?', '%' + content + '%')
+      Post.where('name LIKE ? OR introduction LIKE ? ', "%#{content}%", "%#{content}%")
     elsif method == 'perfect'
-      Post.where(name: content)
+      Post.where('name = ? OR introduction = ?', content, content)
     end
   end
 
