@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   belongs_to :genre
+  has_many :post_comments,dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, presence: true, length: { maximum: 200 }

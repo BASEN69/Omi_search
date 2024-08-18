@@ -16,7 +16,7 @@
   </div>
   <div class="col-12">
         <div class="row">
-          <div class="col-11">
+          <div class="col">
             <table class="table table-bordered mb-3">
               <thead>
                 <tr class="table-active">
@@ -27,7 +27,7 @@
               <tbody>
                 <tr>
                   <td><%= @post.name %></td>
-                  <td style="width: 60%; word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
+                  <td style="width: 70%; word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
                 </tr>
               </tbody>
             </table>
@@ -47,9 +47,39 @@
                 </tr>
               </tbody>
             </table><br>
-            <p class="text-right"><%= link_to "投稿一覧へ", posts_path %></p>
+            <p class="text-right mb-5"><%= link_to "投稿一覧へ", posts_path %></p>
+            <div class="col mb-5 form-group">
+              <%= form_with model: [@post,@post_comment] do |f| %>
+                <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
+                <%= f.submit "コメント", class: "btn btn-primary mt-3" %>
+              <% end %>
+            </div>
+            <table class="table">
+              <thead class="table-light">
+                <tr>
+                  <td scope="col" style="width: 60% ">コメント</td>
+                  <td scope="col" style="width: 15%">ユーザー</td>
+                  <td scope="col" style="width: 10%">投稿日</td>
+                  <td scope="col" style="width: 15%"></td>
+                </tr>
+              </thead>
+              <% @post.post_comments.order(created_at: :desc).each do |post_comment| %>
+                <tbody>
+                  <tr>
+                    <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
+                    <td><%= post_comment.user.nick_name %></td>
+                    <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+                    <% if post_comment.user == current_user %>
+                    <td>
+                      <%= link_to "編集", edit_post_post_comment_path(@post, post_comment), class: "btn btn-success" %>
+                      <%= link_to "削除", post_post_comment_path(@post, post_comment), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
+                    </td>
+                    <% end %>
+                  </tr>
+                </tbody>
+              <% end %>
+            </table>
           </div>
         </div>
-
   </div>
 </div>
