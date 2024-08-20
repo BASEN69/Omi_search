@@ -21,6 +21,9 @@
         <div class="offset-1">
           <%= link_to "コメント一覧", admins_post_comments_path %>
         </div>
+        <div class="offset-1">
+          <%= link_to "ジャンル一覧", admins_genres_path %>
+        </div>
       <% if admin_signed_in? %>
         <div class="offset-1">
           <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>

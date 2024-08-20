@@ -1,10 +1,12 @@
 <div class="container">
   <h2><%= @post.user.nick_name %></h2>
   <% if @post.images.attached? %>
-    <%= image_tag @post.images[0], size: '200x200' %>
-  <% else %>
-    <%= image_tag 'no_image.jpg', size: '200x200' %>
-  <% end %>
+      <% @post.images.each do |image| %>
+            <%= image_tag image, size: "200x200" %>
+      <% end %>
+    <% else %>
+        <%= image_tag 'no_image.jpg', size: "200x200" %>
+    <% end %>
   <table class="table">
     <thead>
       <tr class="table-active">

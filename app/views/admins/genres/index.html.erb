@@ -1,0 +1,32 @@
+<div class="container">
+  <div class ="row">
+    <div class="col-6">
+      <h2>ジャンル一覧</h2>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">ジャンル名</th>
+            <th scope="col"></th>
+            <th scope="col"></th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @genres.each do |genre| %>
+          <tr>
+            <th scope="col"><%= genre.name %></th>
+            <th scope="col"><%= link_to "編集", edit_admins_genre_path(genre) %></th>
+            <th scope="col"><%= link_to "削除", admins_genre_path(genre), method: :delete, "data-confirm" => "本当に消しますか？"  %></th>
+          </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <div class="col-5 form_group">
+      <%= form_with model: @genre, url: admins_genres_path do |f| %>
+        <%= f.label :"ジャンル名" %>
+        <%= f.text_field :name %>
+        <%= f.submit :"追加" %>
+      <% end %>
+    </div>
+  </div>
+</div>

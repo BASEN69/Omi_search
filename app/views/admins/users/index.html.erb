@@ -17,7 +17,7 @@
                <td><%= link_to admins_user_path(user.id) do %><%= user.name %><% end %></td>
                <td><%= user.nick_name %></td>
                <td><%= user.email %></td>
-               <td><%= link_to '削除', admins_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+               <td><%= link_to '強制退会', admins_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
              </tr>
            </tbody>
         </table>

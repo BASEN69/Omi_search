@@ -10,6 +10,7 @@ Rails.application.routes.draw do
     resources :users, only: [:destroy, :index, :show]
     resources :posts, only: [:destroy, :show]
     resources :post_comments, only: [:destroy, :index]
+    resources :genres, only: [:index, :create, :edit, :update, :destroy]
   end
   devise_for :users
   root to: 'homes#top'
@@ -19,7 +20,7 @@ Rails.application.routes.draw do
   get '/mypage', to: 'users#my_page', as: 'mypage'
   resources :users, only: [:show, :edit, :update, :index, :destroy]
   get '/about' => 'homes#about', as: 'about'
-  resources :genres, only: [:new, :create, :index, :show, :edit, :update, :destroy]
+  resources :genres, only: [:index, :show]
 
   get "/search", to: "searches#search"
 
