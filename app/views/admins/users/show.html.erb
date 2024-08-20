@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="mb-5"><%= "#{@user.nick_name}　さんの投稿一覧" %></h2>
+      <% @user.posts.each do |post| %>
+        <table class="table">
+          <thead>
+           <tr class="table-active">
+              <th scope="col" style="width: 30%">商品画像</th>
+              <th scope="col" style="width: 30%">商品名</th>
+              <th scope="col" style="width: 40%">商品説明</th>
+            </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td>
+                 <% if post.images.attached? %>
+                  <%= image_tag post.images[0], size: '100x100' %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', size: '100x100' %>
+                <% end %>
+                </td>
+               <td><%= post.name %></td>
+               <td><%= post.introduction %></td>
+             </tr>
+           </tbody>
+        </table>
+        <p><%= link_to '詳細を見る', admins_post_path(post) %></p>
+        <p><%= link_to '削除', admins_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

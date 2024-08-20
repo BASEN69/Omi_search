@@ -48,12 +48,14 @@
               </tbody>
             </table><br>
             <p class="text-right mb-5"><%= link_to "投稿一覧へ", posts_path %></p>
-            <div class="col mb-5 form-group">
-              <%= form_with model: [@post,@post_comment] do |f| %>
-                <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
-                <%= f.submit "コメント", class: "btn btn-primary mt-3" %>
-              <% end %>
-            </div>
+            <% if user_signed_in? %>
+              <div class="col mb-5 form-group">
+                <%= form_with model: [@post,@post_comment] do |f| %>
+                  <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
+                  <%= f.submit "コメント", class: "btn btn-primary mt-3" %>
+                <% end %>
+            <% end %>
+              </div>
             <table class="table">
               <thead class="table-light">
                 <tr>
@@ -69,12 +71,12 @@
                     <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
                     <td><%= post_comment.user.nick_name %></td>
                     <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-                    <% if post_comment.user == current_user %>
                     <td>
+                    <% if post_comment.user == current_user %>
                       <%= link_to "編集", edit_post_post_comment_path(@post, post_comment), class: "btn btn-success" %>
                       <%= link_to "削除", post_post_comment_path(@post, post_comment), class: "btn btn-danger", method: :delete, "data-confirm" => "本当に消しますか？" %>
-                    </td>
                     <% end %>
+                    </td>
                   </tr>
                 </tbody>
               <% end %>

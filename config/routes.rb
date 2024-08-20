@@ -1,9 +1,15 @@
 Rails.application.routes.draw do
 
-  get 'genre/new'
-  get 'genre/index'
-  get 'genre/show'
-  get 'genre/edit'
+  devise_for :admins, controllers: {
+    sessions:      'admins/sessions',
+    passwords:     'admins/passwords',
+    registrations: 'admins/registrations'
+  }
+  namespace :admins do
+    get 'dashboards', to: 'dashboards#index'
+    resources :users, only: [:destroy, :index, :show]
+    resources :posts, only: [:destroy, :show]
+  end
   devise_for :users
   root to: 'homes#top'
   resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
