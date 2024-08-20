@@ -47,7 +47,7 @@
           <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
           <td><%= post_comment.user.nick_name %></td>
           <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
-          <td><%= link_to "削除", post_post_comment_path(@post, post_comment), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
+          <td><%= link_to "削除", admins_post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
         </tr>
       </tbody>
     <% end %>

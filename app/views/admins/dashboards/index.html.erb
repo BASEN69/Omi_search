@@ -23,7 +23,7 @@
                 </td>
                <td><%= post.name %></td>
                <td><%= post.introduction %></td>
-               <td><%= link_to admins_user_path(post) do %><%= post.user.name %><% end %></td>
+               <td><%= link_to admins_user_path(post.user) do %><%= post.user.name %><% end %></td>
              </tr>
            </tbody>
         </table>

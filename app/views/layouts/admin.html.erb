@@ -18,6 +18,9 @@
         <div class="offset-1">
           <%= link_to "ユーザー一覧", admins_users_path %>
         </div>
+        <div class="offset-1">
+          <%= link_to "コメント一覧", admins_post_comments_path %>
+        </div>
       <% if admin_signed_in? %>
         <div class="offset-1">
           <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
@@ -25,6 +28,10 @@
       <% end %>
       </div>
     </header>
-    <%= yield %>
+    <main>
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </main>
   </body>
 </html>

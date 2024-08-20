@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     get 'dashboards', to: 'dashboards#index'
     resources :users, only: [:destroy, :index, :show]
     resources :posts, only: [:destroy, :show]
+    resources :post_comments, only: [:destroy, :index]
   end
   devise_for :users
   root to: 'homes#top'
