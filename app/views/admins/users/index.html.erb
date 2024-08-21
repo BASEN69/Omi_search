@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="row">
+    <div class="col-10">
+      <h2>ユーザー一覧</h2>
+      <% @users.each do |user| %>
+        <table class="table">
+          <thead>
+           <tr class="table-active">
+              <th scope="col" style="width: 30%">名前</th>
+              <th scope="col" style="width: 30%">ニックネーム</th>
+              <th scope="col" style="width: 30%">email</th>
+              <th></th>
+            </tr>
+           </thead>
+           <tbody>
+             <tr>
+               <td><%= link_to admins_user_path(user.id) do %><%= user.name %><% end %></td>
+               <td><%= user.nick_name %></td>
+               <td><%= user.email %></td>
+               <td><%= link_to '強制退会', admins_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+             </tr>
+           </tbody>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

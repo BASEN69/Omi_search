@@ -1,0 +1,28 @@
+<div class="container">
+  <div class="row">
+    <div class="col-7">
+      <h1>コメントの編集</h1>
+      <% if @comment.errors.any? %>
+        <ul class="alert alert-danger" role="alert">
+          <h6 class="alert-heading">
+            <%= @comment.errors.count %>件のエラーが起きました
+          </h6>
+          <%= @comment.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+      <%= form_with model: [@post, @comment] do |f| %>
+        <div class="form-group">
+          <%= f.label :"コメント" %>
+          <%= f.text_area :comment, class: "form-control" %>
+        </div>
+        <div class="form-group">
+          <%= f.submit '更新', class: "btn btn-success" %><br><br>
+        </div>
+      <% end %>
+      <br>
+      <%= link_to "投稿一覧へ", posts_path,class: 'btn btn-secondary' %>
+    </div>
+  </div>
+</div>

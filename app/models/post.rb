@@ -2,6 +2,7 @@ class Post < ApplicationRecord
   has_many_attached :images
   belongs_to :user
   belongs_to :genre
+  has_many :post_comments,dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, presence: true, length: { maximum: 200 }
@@ -10,6 +11,15 @@ class Post < ApplicationRecord
   FILE_NUMBER_LIMIT = 3
 
   validate :validate_number_of_files
+
+  def self.search_for(content, method)
+    if method == 'partial'
+      Post.where('name LIKE ? OR introduction LIKE ? ', "%#{content}%", "%#{content}%")
+    elsif method == 'perfect'
+      Post.where('name = ? OR introduction = ?', content, content)
+    end
+  end
+
   private
 
   def validate_number_of_files
