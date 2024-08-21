@@ -1,7 +1,7 @@
-class GenresController < ApplicationController
+class Public::GenresController < ApplicationController
   before_action :authenticate_admin!, except: [:index, :show]
 
-  
+
 
   def index
     @genres = Genre.all
@@ -12,6 +12,6 @@ class GenresController < ApplicationController
     @posts = @genre.posts.page(params[:page])
   end
 
-  
+
 
 end

@@ -1,4 +1,4 @@
-class PostsController < ApplicationController
+class Public::PostsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create]
   before_action :ensure_current_user, only: [:edit, :update, :destroy]
 
@@ -30,7 +30,7 @@ class PostsController < ApplicationController
 
   def edit
     @post = Post.find(params[:id])
-    @comment = PostComment.find(params[:id])
+
   end
 
   def update

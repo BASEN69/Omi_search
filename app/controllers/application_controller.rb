@@ -1,21 +1,28 @@
 class ApplicationController < ActionController::Base
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :configure_authentication
 
-  def after_sign_in_path_for(resource)
-    mypage_path
+  private
+
+  def configure_authentication
+    if admin_controller?
+      authenticate_admin!
+    else
+      authenticate_user! unless action_is_public?
+    end
   end
 
-
-
-  def after_sign_out_path_for(resource)
-    new_user_registration_path
+  def admin_controller?
+    self.class.module_parent_name == 'Admins'
   end
-  
-  
 
-  protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :nick_name])
+  def action_is_public?
+    public_actions = {
+      'homes' => ['top', 'about'],
+      'posts' => ['index', 'show'],
+      'genres' => ['show'],
+      'users' => ['show'],
+    }
+    public_actions[controller_name]&.include?(action_name)
   end
 end
+

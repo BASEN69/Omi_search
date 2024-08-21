@@ -1,4 +1,4 @@
-class PostCommentsController < ApplicationController
+class Public::PostCommentsController < ApplicationController
   before_action :ensure_current_user, only: [:edit, :destroy, :update]
 
   def create

@@ -1,6 +1,5 @@
 class Admins::PostCommentsController < ApplicationController
   layout 'admin'
-  before_action :authenticate_admin!
   
   def index
     @comments = PostComment.all
