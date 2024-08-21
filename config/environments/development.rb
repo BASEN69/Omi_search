@@ -77,4 +77,6 @@ Rails.application.configure do
 
   config.hosts << "a30204b0a1334328aa09dbc52cf682c4.vfs.cloud9.ap-northeast-1.amazonaws.com"
 
+  config.time_zone = 'Tokyo'
+
 end

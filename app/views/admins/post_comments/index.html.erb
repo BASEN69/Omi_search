@@ -2,18 +2,18 @@
             <table class="table">
               <thead class="table-light">
                 <tr>
-                  <td scope="col" style="width: 60% ">コメント</td>
+                  <td scope="col" style="width: 50% ">コメント</td>
                   <td scope="col" style="width: 15%">ユーザー</td>
-                  <td scope="col" style="width: 10%">投稿日</td>
+                  <td scope="col" style="width: 20%">投稿日時</td>
                   <td scope="col" style="width: 15%"></td>
                 </tr>
               </thead>
-              <% @comments.each do |post_comment| %>
+              <% @comments.order(created_at: :desc).each do |post_comment| %>
                 <tbody>
                   <tr>
                     <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
                     <td><%= post_comment.user.nick_name %></td>
-                    <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+                    <td><%= post_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
                     <td><%= link_to "削除", admins_post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
                   </tr>
                 </tbody>
