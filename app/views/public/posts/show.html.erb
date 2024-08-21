@@ -1,20 +1,21 @@
 <div class="container">
   <div class="row">
-    <% if @post.images.attached? %>
-      <% @post.images.each do |image| %>
-        <div class="mb-5">
-          <div class="card mr-5">
-            <%= image_tag image, size: "300x300" %>
+    <div class="col-md-10">
+
+      <% if @post.images.attached? %>
+        <% @post.images.each do |image| %>
+          <div class="mb-5">
+            <div class="card mr-5">
+              <%= image_tag image, size: "300x300" %>
+            </div>
           </div>
+        <% end %>
+      <% else %>
+        <div class="mb-3">
+          <%= image_tag 'no_image.jpg', size: "300x300" %>
         </div>
       <% end %>
-    <% else %>
-      <div class="mb-3">
-        <%= image_tag 'no_image.jpg', size: "300x300" %>
-      </div>
-    <% end %>
-  </div>
-  <div class="col-12">
+      <div class="col-md-12">
         <div class="row">
           <div class="col">
             <table class="table table-bordered mb-3">
@@ -83,5 +84,16 @@
             </table>
           </div>
         </div>
+    </div>
+    <div class="col-md-2">
+      <h3>都道府県</h3>
+        <ul class="list-group">
+        <% Genre.all.each do |genre| %>
+          <li class="list-group-item">
+            <%= link_to genre.name, genre_path(genre.id) %>
+          </li>
+        <% end %>
+       </ul>
+    </div>
   </div>
 </div>

@@ -1,13 +1,13 @@
 <div class="container mt-4">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10">
       <h2 class="mb-5"><%= @genre.name %> の投稿一覧</h2>
       <div class="row">
         <%= render 'public/posts/list', posts: @posts %>
       </div>
     </div>
 
-    <div class="col-md-3">
+    <div class="col-md-2">
       <h3>都道府県</h3>
       <ul class="list-group">
         <% Genre.all.each do |genre| %>
