@@ -16,7 +16,7 @@ end
 
 taro = User.find_or_create_by!(email: "asasas@exmple.com") do |user|
   user.name = "太郎"
-  user.nicl_name = "taro"
+  user.nick_name = "taro"
   user.password = "asasas1919"
 end
 
