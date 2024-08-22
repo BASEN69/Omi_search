@@ -57,6 +57,9 @@
                   </tr>
                 </tbody>
               </table><br>
+              <% if @post.user == current_user %>
+                <p class="text-right"><%= link_to "マイページへ", mypage_path %></p>
+              <% end %>
               <p class="text-right mb-5"><%= link_to "投稿一覧へ", posts_path %></p>
               <% if user_signed_in? %>
                 <div class="col-11 mb-5 form-group">
