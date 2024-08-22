@@ -36,7 +36,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(params[:id])
     @user.destroy
     flash[:notice] = "アカウントが削除されました"
-    redirect_to about_path
+    redirect_to new_user_registration_path
   end
   private
 
