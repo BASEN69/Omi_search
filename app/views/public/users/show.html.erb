@@ -5,7 +5,7 @@
       <h2 class="mb-5"><%= @user == current_user ? "#{@user.nick_name} さんのマイページ" : "#{@user.nick_name}　さんの投稿一覧" %></h2>
       <% if @user == current_user %>
       <p class="mt-5">
-        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample"><%= current_user.nick_name %> さんの登録情報</a>
+        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample"><%= current_user.nick_name %> さんの登録情報</a><small> ※クリックすると表示されます</small>
       </p>
       <div class="row">
         <div class="col">
@@ -100,15 +100,6 @@
         <%= paginate @posts, class: "pagination justify-content-center" %>
       </div>
     </div>
-    <div class="col-md-2">
-      <h3>都道府県</h3>
-      <ul class="list-group">
-        <% Genre.all.each do |genre| %>
-          <li class="list-group-item">
-            <%= link_to genre.name, genre_path(genre.id) %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
+     <%= render 'public/genres/genre_lists' %>
   </div>
 </div>

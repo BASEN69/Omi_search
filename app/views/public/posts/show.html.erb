@@ -98,15 +98,6 @@
           </div>
         </div>
     </div>
-    <div class="col-md-2">
-      <h3>都道府県</h3>
-        <ul class="list-group">
-        <% Genre.all.each do |genre| %>
-          <li class="list-group-item">
-            <%= link_to genre.name, genre_path(genre.id) %>
-          </li>
-        <% end %>
-       </ul>
-    </div>
+    <%= render 'public/genres/genre_lists' %>
   </div>
 </div>
