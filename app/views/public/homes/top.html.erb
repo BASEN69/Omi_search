@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-9">
+    <div class="col-md-10">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -37,8 +37,8 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-    <h2 class="mb-5 mt-5 text-center"><u class="new-post">最新投稿（５件)</u></h2>
-     <div class="row">
+      <h2 class="mb-5 mt-5 text-center"><u class="new-post">最新投稿（５件)</u></h2>
+      <div class="row">
       <% @posts.order(created_at: :desc).limit(5).each do |post| %>
         <div class="col-md-12 mb-4">
           <div class="card">
@@ -94,8 +94,7 @@
       <% end %>
       </div>
     </div>
-
-    <div class="col-md-3">
+    <div class="col-md-2">
       <h3>都道府県</h3>
       <ul class="list-group">
         <% Genre.all.each do |genre| %>
