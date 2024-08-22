@@ -1,15 +1,16 @@
 <div class="container">
   <div class="row">
     <div class="col-md-10">
-
-      <% if @post.images.attached? %>
-        <% @post.images.each do |image| %>
-          <div class="mb-5">
-            <div class="card mr-5">
-              <%= image_tag image, size: "300x300" %>
+      <div class="row justify-content-center">
+        <% if @post.images.attached? %>
+          <% @post.images.each do |image| %>
+            <div class="mb-5 ">
+              <div class="card ml-3 mr-3 text-center">
+                <%= image_tag image, size: "250x250" %>
+              </div>
             </div>
-          </div>
         <% end %>
+      </div>
       <% else %>
         <div class="mb-3">
           <%= image_tag 'no_image.jpg', size: "300x300" %>
