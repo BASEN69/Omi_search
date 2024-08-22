@@ -11,7 +11,17 @@ puts "Seedの実行を開始"
 mike = User.find_or_create_by!(email: "mike@example.com") do |user|
   user.name = "mike"
   user.nick_name = "mike"
-  user.password = "password"
+  user.password = "password19"
+end
+
+taro = User.find_or_create_by!(email: "asasas@exmple.com") do |user|
+  user.name = "太郎"
+  user.nicl_name = "taro"
+  user.password = "asasas1919"
+end
+
+Admin.find_or_create_by!(email: "admin@exmple.com") do |admin|
+  admin.password = "asasas1969"
 end
 
 # 47都道府県を作成
@@ -35,6 +45,13 @@ Post.find_or_create_by!(name: "ままどーる") do |post|
   post.introduction = "クリーミーな洋菓子って感じで美味しい！"
   post.category = "会津若松市"
   post.user = mike
+  post.genre = Genre.find_by(name: "福島県" )
+end
+
+Post.find_or_create_by!(name: "エキソンパイ") do |post|
+  post.introduction = "あんこ入りのパイでとても美味しかった！また食べたい"
+  post.category = "会津若松市"
+  post.user = taro
   post.genre = Genre.find_by(name: "福島県" )
 end
 
