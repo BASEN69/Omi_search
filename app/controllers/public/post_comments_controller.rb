@@ -3,12 +3,13 @@ class Public::PostCommentsController < ApplicationController
 
   def create
     post = Post.find(params[:post_id])
-    comment = current_user.post_comments.new(post_comment_params)
-    comment.post_id = post.id
-    if comment.save
+    @comment = current_user.post_comments.new(post_comment_params)
+    @comment.post_id = post.id
+    if @comment.save
       flash[:notice] = "コメントに成功しました"
       redirect_to post_path(post)
     else
+      @comments = post.post_comments
       flash[:alert] = "コメントに失敗しました"
       redirect_to post_path(post)
     end
@@ -24,6 +25,9 @@ class Public::PostCommentsController < ApplicationController
     if @comment.update(post_comment_params)
       flash[:notice] = "コメントの更新に成功しました"
       redirect_to post_path(@comment.post.id)
+    else
+      flash[:alert] = "コメントの更新に失敗しました"
+      redirect_to edit_post_post_comment_path
     end
   end
 
