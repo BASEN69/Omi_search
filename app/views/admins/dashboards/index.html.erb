@@ -32,5 +32,6 @@
         <p><%= link_to '削除', admins_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
       <% end %>
     </div>
+    <%= paginate @posts %>
   </div>
 </div>

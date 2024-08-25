@@ -1,8 +1,8 @@
 class Admins::PostCommentsController < ApplicationController
   layout 'admin'
-  
+
   def index
-    @comments = PostComment.all
+    @comments = PostComment.page(params[:page]).per(50)
   end
 
   def destroy
