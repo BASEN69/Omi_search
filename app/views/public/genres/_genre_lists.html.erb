@@ -1,18 +1,25 @@
 <div class="col-md-2">
   <div class="row">
     <% if user_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <div class="col-md-12">
-          <div class="form-group">
-            <h3>検索</h3>
+      <div class="col-md-12">
+        <h3>検索</h3>
+        <div class="form-group">
+          <%= form_with url: search_path, method: :get, local: true do |f| %>
             <%= f.label :content, "投稿・ユーザー検索" %>
             <%= f.text_field :content, class: "form-control mb-1" %>
             <%= f.select :model, options_for_select({"投稿" => "post", "ユーザー" => "user"}), {}, class: "form-control mb-1" %>
             <%= f.select :method, options_for_select({"部分一致" => "partial", "完全一致" => "perfect"}), {}, class: "form-control mb-1" %>
             <%= f.submit "検索", class: "btn btn-primary mt-1" %>
-          </div>
+          <% end %>
         </div>
-      <% end %>
+        <div class="form-group">
+          <%= form_with url: tagsearches_search_path, method: :get, local: true do |f| %>
+            <%= f.label :content, "市町村検索" %>
+            <%= f.text_field :content %>
+            <%= f.submit "検索", class: "btn btn-primary mt-1" %>
+          <% end %>
+        </div>
+      </div>
     <% end %>
     <div class="col-md-12">
       <h3>都道府県</h3>
