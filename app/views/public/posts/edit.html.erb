@@ -36,6 +36,33 @@
           <%= f.label :genre_id, "都道府県" %><br>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択", class: "form-control" %>
         </div>
+        <% if @post.id.nil? %>
+          <div class="form-group" id="star">
+            <%= f.label :star %>
+            <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+            <div id="post_raty"></div>
+          </div>
+          <script>
+            $(document).on('turbolinks:load', function() {
+              let elem = document.querySelector('#post_raty');
+              if (elem == null) return;
+
+              elem.innerHTML = ""
+              let opt = {
+                starOn: "<%= asset_path('star-on.png') %>",
+                starOff: "<%= asset_path('star-off.png') %>",
+                starHalf: "<%= asset_path('star-half.png') %>",
+                scoreName: 'post[star]',
+              };
+              raty(elem, opt);
+            });
+          </script>
+        <% else %>
+          <div class="form-group">
+            <%= render 'star', post: @post %>
+            <small>※レビューの変更は出来ません</small>
+          </div>
+        <% end %>
 
         <p>後々、レビュー・緯度経度を追加</p>
 

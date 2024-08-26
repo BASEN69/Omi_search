@@ -22,13 +22,13 @@
               <table class="table table-bordered mb-3">
                 <thead>
                   <tr class="table-active">
-                    <th scope="col" style="width: 30%">商品名</th>
+                    <th scope="col" style="width: 30%" class="text-center">商品名</th>
                     <th scope="col" style="width: 70%">商品説明</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><%= @post.name %></td>
+                    <td class="text-center"><%= @post.name %></td>
                     <td style="width: 70%; word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
                   </tr>
                 </tbody>
@@ -36,23 +36,25 @@
               <table class="table table-bordered">
                 <thead>
                   <tr class="table-active">
-                    <th scope="col" style="width: 33%">都道府県</th>
-                    <th scope="col" style="width: 33%">市町村</th>
+                    <th scope="col" style="width: 20%" class="text-center">都道府県</th>
+                    <th scope="col" style="width: 30%" class="text-center">市町村</th>
+                    <th scope="col" style="width: 20%" class="text-center">レビュー</th>
                     <% if @post.user == current_user %>
-                      <th scope="col" style="width: 33%" class="text-center">編集</th>
+                      <th scope="col" style="width: 30%" class="text-center">編集</th>
                     <% else %>
-                      <th scope="col" style="width: 33%">ユーザー</th>
+                      <th scope="col" style="width: 30%" class="text-center">ユーザー</th>
                     <% end %>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
-                    <td><%= link_to @post.category, tagsearches_search_path(content: @post.category) %></td>
+                    <td class="text-center"><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
+                    <td class="text-center"><%= link_to @post.category, tagsearches_search_path(content: @post.category) %></td>
+                    <td class="text-center"><%= render 'star', post: @post %></td>
                     <% if @post.user == current_user %>
                       <td scope="col" style="width: 15%" class="text-center"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success mr-2" %><%= link_to "削除", post_path(@post), class: "btn btn-danger ml-2", method: :delete, "data-confirm" => "本当に消しますか？"  %></a></th>
                     <% else %>
-                      <td><%= link_to user_path(@post.user_id) do %><%= @post.user.nick_name %><% end %></td>
+                      <td class="text-center"><%= link_to user_path(@post.user_id) do %><%= @post.user.nick_name %><% end %></td>
                     <% end %>
                   </tr>
                 </tbody>
@@ -61,8 +63,9 @@
                 <p class="text-right"><%= link_to "マイページへ", mypage_path %></p>
               <% end %>
               <p class="text-right mb-5"><%= link_to "投稿一覧へ", posts_path %></p>
+              <hr>
               <% if user_signed_in? %>
-                <div class="col-11 mb-5 form-group">
+                <div class="col-11 mt-5 mb-5 form-group">
                   <%= form_with model: [@post,@post_comment] do |f| %>
                     <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
                     <%= f.submit "コメント", class: "btn btn-primary mt-3" %>

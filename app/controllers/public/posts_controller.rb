@@ -55,7 +55,7 @@ class Public::PostsController < ApplicationController
   private
 
   def post_params
-    params.require(:post).permit(:name, :introduction, :category,:genre_id, images: [])
+    params.require(:post).permit(:name, :introduction, :category,:genre_id, :star, images: [])
   end
 
   def ensure_current_user
