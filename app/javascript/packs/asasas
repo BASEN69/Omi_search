@@ -1,0 +1,21 @@
+ // モーダルを開く動作
+var modalImages = document.getElementsByClassName("modalImage");
+console.log(modalImages)
+var triggers = Array.from(modalImages);
+triggers.forEach(function(modalImage) {
+  modalImage.addEventListener("click",function(image){
+    console.log(image);
+      var modal = document.getElementById('imageModal');
+      var modalImg = document.getElementById('modalImage');
+      modal.style.display = "block";
+      modalImg.src = image.target.src;
+  });
+});
+// モーダルを閉じる動作
+ // モーダルを開く動作
+/*
+document.getElementsByClassName("close").addEventListener("click",function() {
+  var modal = document.getElementById('imageModal');
+  modal.style.display = "none";
+});
+*/

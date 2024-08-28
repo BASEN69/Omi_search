@@ -13,7 +13,7 @@
 
   <body>
     <header>
-      <div class="container-fluid">
+      <div class="container-fluid"  style="position: fixed; top: 0; width: 100%; z-index: 10;">
         <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
           <div class="offset-1">
             <a class="navbar-brand" href="/"><%= image_tag ('noname.jpg'), style: 'width: 50%;'%></a>
@@ -53,7 +53,7 @@
       </div>
     </header>
 
-    <main class="container mt-3">
+    <main class="container" style="margin-top: 120px;">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>

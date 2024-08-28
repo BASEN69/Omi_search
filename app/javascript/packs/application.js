@@ -26,3 +26,4 @@ window.raty = function(elem,opt) {
   raty.init();
   return raty;
 }
+

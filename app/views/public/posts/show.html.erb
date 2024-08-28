@@ -6,7 +6,12 @@
           <% @post.images.each do |image| %>
             <div class="mb-5 ">
               <div class="card ml-3 mr-3 text-center">
-                <%= image_tag image, size: "250x250" %>
+                <%= image_tag image, style: 'cursor: pointer;', onclick: 'openModal(this)', size: "250x250" %>
+                <!-- モーダルの構造 -->
+                <div id="imageModal" class="modal">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <img id="modalImage" class="modal-content">
+                </div>
               </div>
             </div>
           <% end %>
@@ -104,3 +109,5 @@
     <%= render 'public/genres/genre_lists' %>
   </div>
 </div>
+
+<%= javascript_pack_tag 'image_modal' %>
