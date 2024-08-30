@@ -44,9 +44,9 @@
                 <div class="row">
                   <div class="col-md-3">
                     <% if post.images.attached? %>
-                      <%= image_tag post.images[0], size: '200x200', class: 'img-fluid card-img-top' %>
+                      <%= image_tag post.images[0], size: '200x200' %>
                     <% else %>
-                      <%= image_tag 'no_image.jpg', size: '200x200', class: 'img-fluid card-img-top' %>
+                      <%= image_tag 'no_image.jpg', size: '200x200' %>
                     <% end %>
                   </div>
                   <div class="col-md-9">
