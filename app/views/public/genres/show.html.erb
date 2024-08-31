@@ -6,7 +6,7 @@
         <script>
           function initMap() {
             // 初期マップの設定
-            let mapCenter = { lat: 38.60, lng: 139.5 }; // 初期表示位置
+            let mapCenter = { lat: <%= @latitude %>, lng: <%= @longitude %> };
             let map = new google.maps.Map(document.getElementById('map'), {
               zoom: 10,
               center: mapCenter,

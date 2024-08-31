@@ -12,8 +12,12 @@
         </div>
       <% end %>
       <%= form_with model: @genre, url: admins_genre_path(@genre), method: :patch, local: true do |f| %>
-        <%= f.label :name, "都道府県" %>
-        <%= f.text_field :name %>
+        <%= f.label :name, "都道府県" %><br>
+        <%= f.text_field :name %><br>
+        <%= f.label :latitude, "緯度" %><br>
+        <%= f.text_field :latitude, class: "form-control", placeholder: "例: 35.6895" %><br>
+        <%= f.label :longitude, "経度" %><br>
+        <%= f.text_field :longitude, class: "form-control", placeholder: "例: 139.6917" %><br>
         <%= f.submit :"更新" %>
       <% end %>
     </div>

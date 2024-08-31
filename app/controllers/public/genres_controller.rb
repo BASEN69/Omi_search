@@ -10,6 +10,9 @@ class Public::GenresController < ApplicationController
   def show
     @genre = Genre.find(params[:id])
     @posts = @genre.posts.page(params[:page])
+    
+    @latitude = @genre.latitude
+    @longitude = @genre.longitude
   end
 
 

@@ -23,8 +23,12 @@
     </div>
     <div class="col-5 form_group">
       <%= form_with model: @genre, url: admins_genres_path do |f| %>
-        <%= f.label :"ジャンル名" %>
-        <%= f.text_field :name %>
+        <%= f.label :"ジャンル名" %><br>
+        <%= f.text_field :name %><br><br>
+        <%= f.label :latitude, "緯度" %><br>
+        <%= f.text_field :latitude, class: "form-control", placeholder: "例: 35.6895" %><br>
+        <%= f.label :longitude, "経度" %><br>
+        <%= f.text_field :longitude, class: "form-control", placeholder: "例: 139.6917" %><br>
         <%= f.submit :"追加" %>
       <% end %>
     </div>
