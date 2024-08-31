@@ -67,3 +67,6 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
+
+#位置情報のgem
+gem 'geocoder'

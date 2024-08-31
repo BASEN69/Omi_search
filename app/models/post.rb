@@ -7,6 +7,10 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :category, presence: true
+  validates :address, presence: true
+
+  geocoded_by :address
+ 
 
   FILE_NUMBER_LIMIT = 3
 

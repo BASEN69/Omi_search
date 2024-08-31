@@ -33,7 +33,7 @@
                     <% if user_signed_in? %>
                       <%= link_to mypage_path, class: 'dropdown-item' do %>
                         <i class="fa-solid fa-user"></i> マイページ <% end %>
-                      <%= link_to new_post_path, class: 'dropdown-item' do %>
+                      <%= link_to new_post_path, class: 'dropdown-item', data: {turbolinks: "false"} do %>
                         <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
                       <div class="dropdown-divider"></div>
                       <%= link_to destroy_user_session_path,method: :delete, class: 'dropdown-item' do %>
@@ -75,5 +75,6 @@
         </div>
       </div>
     </footer>
+  <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
 </html>
