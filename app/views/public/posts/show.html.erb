@@ -12,6 +12,7 @@
                   <span class="close" onclick="closeModal()">&times;</span>
                   <img id="modalImage" class="modal-content">
                 </div>
+                <small>画像をクリックすると拡大できます</small>
               </div>
             </div>
           <% end %>
@@ -20,9 +21,6 @@
             <%= image_tag 'no_image.jpg', size: "300x300" %>
           </div>
         <% end %>
-      </div>
-      <div class="text-center mb-3">
-        <small>画像をクリックすると拡大できます</small>
       </div>
         <div class="col-md-12">
           <div class="row">
@@ -67,10 +65,45 @@
                   </tr>
                 </tbody>
               </table><br>
-              <div class="">
-                <%= @post.address %>
+              <div>
+                <p>住所：<%= @post.address %></p>
+                <small>※住所は目安としてお使いください</small>
               </div>
+              <div id="map" class="border border-dark"></div>
 
+              <script>
+                function initMap() {
+                  //初期表示位置
+                  let latlng = new google.maps.LatLng(38.60, 139.5);
+                  //デザイン
+                  let styles = [
+                       {
+                        stylers: [
+                         { "saturation": 0 },
+                         { "lightness": 0 }
+                        ]
+                       }
+                      ];
+                  let map = new google.maps.Map(document.getElementById('map'), {
+                      zoom: 15 ,
+                      styles: styles,
+                      center: latlng
+                  });
+                  let transitLayer = new google.maps.TransitLayer();
+                  transitLayer.setMap(map);
+  
+                ( function() {
+                  let markerLatLng = { lat: <%= @post.latitude %>, lng: <%= @post.longitude %> }; // 緯度経度のデータ作成
+                  let marker = new google.maps.Marker({
+                    position: markerLatLng,
+                    map: map
+                  });
+                  // マップの中心をマーカーの位置に更新
+                  map.setCenter(markerLatLng);
+                })();
+              }
+            </script>
+            <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
 
               <% if @post.user == current_user %>
                 <p class="text-right"><%= link_to "マイページへ", mypage_path %></p>
@@ -110,7 +143,6 @@
                   </tbody>
                 <% end %>
               </table>
-            <%= @post.latitude %>_____<%= @post.longitude %>
             </div>
           </div>
         </div>

@@ -13,29 +13,29 @@
       <% end %>
       <%= form_with model: @post do |f| %>
         <div class="form-group">
-          <%= f.label :name, "商品名" %>
+          <%= f.label :name, "商品名" %><small style="color: red;">※必須入力</small>
           <%= f.text_field :name, class: "form-control", placeholder: "商品の名前を入力してください" %>
         </div>
         <div class="form-group">
-          <%= f.label :introduction, "商品説明文" %>
+          <%= f.label :introduction, "商品説明文" %><small style="color: red;">※必須入力</small>
           <%= f.text_area :introduction, class: "form-control", placeholder: "商品の簡単な説明を入力してください" %>
         </div>
         <div class="form-group">
-          <%= f.label :category, "市町村" %>
+          <%= f.label :category, "市町村" %><small style="color: red;">※必須入力</small>
           <%= f.text_field :category, class: "form-control", placeholder: "〇〇市などと市町村を入力してください" %>
           <small>※　購入した市町村（〇〇市や〇〇町や〇〇村）のみ入力してください</small><br>
           <small class="font-weight-bold">例:　川越市で購入した場合「川越市」と入力</small>
         </div>
         <div class="row" style="padding: 15px;">
 
-          <div class="form-group mr-5">
+          <div class="form-group mr-5 border border-dark pr-3 pl-3 pt-1">
             <%= f.label :images, "商品画像" %><br>
             <%= f.file_field :images, multiple: true, id: 'images' %><br>
             <small>※画像を3枚まで選択可能です</small><br><br>
           </div>
 
           <% if @post.id.nil? %>
-            <div class="form-group ml-3 " id="star">
+            <div class="form-group ml-3 border border-dark pr-3 pl-3 pt-1" id="star">
               <%= f.label :star, "評価" %>
               <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
               <div id="post_raty"></div>
@@ -63,16 +63,16 @@
           <% end %>
         </div>
         <div class="form-group">
-          <%= f.label :genre_id, "都道府県" %><br>
+          <%= f.label :genre_id, "都道府県" %><small style="color: red;">※必須入力</small><br>
           <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "都道府県を選択", class: "form-control" %>
         </div>
         <div class="form-group">
-          <%= f.label "郵便番号" %>
+          <%= f.label "郵便番号" %><small>※郵便番号での住所検索が出来ます</small>
           <%= text_field_tag :zipcode, nil, id: 'zipcode', class: "form-control", placeholder: "郵便番号" %>
         </div>
 
         <div class="form-group">
-          <%= f.label "住所" %>
+          <%= f.label "住所" %><small style="color: red;">※必須入力</small>
           <%= f.text_field :address, id: :address, class: "form-control", placeholder: "住所" %>
         </div>
         <%= f.label :latitude, "緯度" %>
@@ -80,14 +80,12 @@
         <%= f.label :longitude, "経度" %>
         <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
 
-        <div class="form-group">
+        <div class="form-group mt-3">
           <%= f.submit '投稿', class: "btn btn-success" %>
         </div>
       <% end %>
-        <h2>Map</h2>
-
         <p>マーカーをドラッグ＆ドロップで位置の調整してください</p>
-        <div id='map'></div>
+        <div id='map' class="border border-dark"></div>
         <script>
           let map;
           let marker;
@@ -100,14 +98,12 @@
               center: {lat: 35.6803997, lng: 139.7690174}, // 東京
               zoom: 15,
             });
-
             // マーカーの初期設定
             marker = new google.maps.Marker({
               map: map,
               draggable: true,
               position: {lat: 35.6803997, lng: 139.7690174} // 東京
             });
-
             // マーカーのドラッグ終了時のイベント
             google.maps.event.addListener(marker, 'dragend', function(ev) {
               document.getElementById('latitude').value = ev.latLng.lat();
@@ -115,26 +111,22 @@
               addressSet = false; // ドラッグで位置が設定されたので、住所検索での位置設定を無効化
             });
           }
-
           // 住所から地図を更新する関数
           function updateMapFromAddress(address) {
             geocoder.geocode({'address': address}, function(results, status) {
               if (status == 'OK') {
                 map.setCenter(results[0].geometry.location);
                 marker.setPosition(results[0].geometry.location);
-
                 if (!addressSet) {  // 住所検索での位置設定が行われていない場合のみ
                   document.getElementById('latitude').value = results[0].geometry.location.lat();
                   document.getElementById('longitude').value = results[0].geometry.location.lng();
                 }
-
                 addressSet = true; // 住所検索で位置が設定された
               } else {
                 alert('該当する結果がありませんでした：' + status);
               }
             });
           }
-
           // jPostalを使用して郵便番号から住所を自動入力
           function jpostal() {
             $('#zipcode').jpostal({
@@ -143,28 +135,19 @@
                 '#address': '%3%4%5'
               }
             });
-
             // 住所が変更された時にマップを更新
             $('#address').on('change', function() {
               updateMapFromAddress(this.value);
             });
           }
-
           // DOMの読み込みが完了したら初期化
           $(document).on("turbolinks:load", function() {
             initMap();
             jpostal();
           });
         </script>
-
-
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
         <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
-
-
-
-
-        <p>後々、レビュー・緯度経度を追加</p>
     </div>
   </div>
 </div>

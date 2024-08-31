@@ -10,7 +10,8 @@ class Post < ApplicationRecord
   validates :address, presence: true
 
   geocoded_by :address
- 
+ # 手動入力がない場合のみ geocode を実行
+  after_validation :geocode, if: ->(obj) { obj.latitude.blank? && obj.longitude.blank? }
 
   FILE_NUMBER_LIMIT = 3
 
