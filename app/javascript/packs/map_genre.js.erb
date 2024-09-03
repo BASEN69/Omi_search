@@ -1,0 +1,42 @@
+function initMap() {
+  // 初期マップの設定
+  let mapCenter = { lat: <%= @latitude %>, lng: <%= @longitude %> };
+  let map = new google.maps.Map(document.getElementById('map'), {
+    zoom: 10,
+    center: mapCenter,
+    styles: [
+      {
+        stylers: [
+          { "saturation": 0 },
+          { "lightness": 0 }
+        ]
+      }
+    ]
+  });
+
+  // 各投稿のマーカーを地図に追加
+  let posts = <%= raw @posts.to_json(only: [:id, :name, :latitude, :longitude, :introduction]) %>;
+  posts.forEach(function(post) {
+    let markerLatLng = { lat: post.latitude, lng: post.longitude };
+    let marker = new google.maps.Marker({
+      position: markerLatLng,
+      map: map
+    });
+
+    // マーカークリック時の情報ウィンドウ
+    let infoWindow = new google.maps.InfoWindow({
+      content: `
+        <div>
+          <h4>${post.name}</h4>
+          <p>${post.introduction.substring(0, 50)}...</p>
+          <a href="/posts/${post.id}">詳細を見る</a>
+        </div>
+      `
+    });
+
+    // マーカークリック時のイベントリスナー
+    marker.addListener('click', function() {
+      infoWindow.open(map, marker);
+    });
+  });
+}

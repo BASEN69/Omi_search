@@ -27,50 +27,43 @@
           <small>※　購入した市町村（〇〇市や〇〇町や〇〇村）のみ入力してください</small><br>
           <small class="font-weight-bold">例:　川越市で購入した場合「川越市」と入力</small>
         </div>
-        <div class="form-group">
-          <%= f.label :"商品画像" %><br>
-          <%= f.file_field :images, multiple: true, id: 'images' %><br>
-          <small>※画像を3枚まで選択可能です</small><br><br>
+        <div class="row" style="padding: 15px;">
+          <div class="form-group mr-5 border border-dark pr-3 pl-3 pt-1">
+            <%= f.label :images, "商品画像" %><br>
+            <%= f.file_field :images, multiple: true, id: 'images' %><br>
+            <small>※画像を3枚まで選択可能です</small><br><br>
+          </div>
+            <div class="form-group ml-3 pr-3 pl-3 pt-4">
+              <%= render 'star', post: @post %>
+              <p class="mt-2">レビューの変更は出来ません</p>
+            </div>
         </div>
         <div class="form-group">
-          <%= f.label :genre_id, "都道府県" %><br>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択", class: "form-control" %>
+          <%= f.label :genre_id, "都道府県" %><small style="color: red;">※必須入力</small><br>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "都道府県を選択", class: "form-control" %>
         </div>
-        <% if @post.id.nil? %>
-          <div class="form-group" id="star">
-            <%= f.label :star %>
-            <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
-            <div id="post_raty"></div>
-          </div>
-          <script>
-            $(document).on('turbolinks:load', function() {
-              let elem = document.querySelector('#post_raty');
-              if (elem == null) return;
-
-              elem.innerHTML = ""
-              let opt = {
-                starOn: "<%= asset_path('star-on.png') %>",
-                starOff: "<%= asset_path('star-off.png') %>",
-                starHalf: "<%= asset_path('star-half.png') %>",
-                scoreName: 'post[star]',
-              };
-              raty(elem, opt);
-            });
-          </script>
-        <% else %>
-          <div class="form-group">
-            <%= render 'star', post: @post %>
-            <small>※レビューの変更は出来ません</small>
-          </div>
-        <% end %>
-
-        <p>後々、レビュー・緯度経度を追加</p>
-
         <div class="form-group">
-          <%= f.submit '更新', class: "btn btn-success" %><br><br>
-          <%= link_to "戻る", :back, class: 'btn btn-secondary'%>
+          <%= f.label "住所" %><small style="color: red;">※必須入力</small>
+          <%= f.text_field :address, id: :address, class: "form-control", placeholder: "住所　例：埼玉県川越市幸町　など番地無しも可能です" %>
+          <div class="input-group-append">
+            <button id="searchButton" type="button" class="btn btn-primary">検索</button>
+          </div>
+        </div>
+        <%= f.label :latitude, "緯度" %>
+        <%= f.text_field :latitude, id: :latitude, placeholder: "緯度" %>
+        <%= f.label :longitude, "経度" %>
+        <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
+
+        <div class="form-group mt-3">
+          <%= f.submit '投稿', class: "btn btn-success" %>
         </div>
       <% end %>
+        <p>マーカーをドラッグ＆ドロップで位置の調整してください</p>
+        <p>マップがうまく表示されない場合はページを更新してください</p>
+        <div id='map' class="border border-dark"></div>
+
+        <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
     </div>
   </div>
 </div>

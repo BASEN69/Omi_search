@@ -48,6 +48,7 @@
           }
         </script>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
+
       <div class="row">
         <%= render 'public/posts/list', posts: @posts %>
       </div>
