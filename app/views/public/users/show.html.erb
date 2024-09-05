@@ -83,7 +83,7 @@
                           <td class="text-center"><%= link_to post.category, tagsearches_search_path(content: post.category) %></td>
                           <td class="text-center"><%= render 'public/posts/star', post: post %></td>
                           <% if post.user == current_user %>
-                            <td scope="col" style="width: 15%" class="text-center"><%= link_to "編集", edit_post_path(post), class: "btn btn-success mr-2" %><%= link_to "削除", post_path(post), class: "btn btn-danger ml-2", method: :delete, "data-confirm" => "本当に消しますか？"  %></a></th>
+                            <td scope="col" style="width: 15%" class="text-center"><%= link_to "編集", edit_post_path(post), class: "btn btn-success mr-2", data: {turbolinks: "false"} %><%= link_to "削除", post_path(post), class: "btn btn-danger ml-2", method: :delete, "data-confirm" => "本当に消しますか？"  %></a></th>
                           <% else %>
                             <td class="text-center"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></td>
                           <% end %>

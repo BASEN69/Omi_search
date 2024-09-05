@@ -2,52 +2,15 @@
   <div class="row">
     <div class="col-md-10">
       <h2 class="mb-5"><%= @genre.name %> の投稿一覧</h2>
+      <h3 class="">地図</h3>
       <div id='map' class="border border-dark mb-3"></div>
-        <script>
-          function initMap() {
-            // 初期マップの設定
-            let mapCenter = { lat: <%= @latitude %>, lng: <%= @longitude %> };
-            let map = new google.maps.Map(document.getElementById('map'), {
-              zoom: 10,
-              center: mapCenter,
-              styles: [
-                {
-                  stylers: [
-                    { "saturation": 0 },
-                    { "lightness": 0 }
-                  ]
-                }
-              ]
-            });
-
-            // 各投稿のマーカーを地図に追加
-            let posts = <%= raw @posts.to_json(only: [:id, :name, :latitude, :longitude, :introduction]) %>;
-            posts.forEach(function(post) {
-              let markerLatLng = { lat: post.latitude, lng: post.longitude };
-              let marker = new google.maps.Marker({
-                position: markerLatLng,
-                map: map
-              });
-
-              // マーカークリック時の情報ウィンドウ
-              let infoWindow = new google.maps.InfoWindow({
-                content: `
-                  <div>
-                    <h4>${post.name}</h4>
-                    <p>${post.introduction.substring(0, 50)}...</p>
-                    <a href="/posts/${post.id}">詳細を見る</a>
-                  </div>
-                `
-              });
-
-              // マーカークリック時のイベントリスナー
-              marker.addListener('click', function() {
-                infoWindow.open(map, marker);
-              });
-            });
-          }
-        </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
+      <input type="hidden" id="latitude" value="<%= @genre.latitude %>">
+      <input type="hidden" id="longitude" value="<%= @genre.longitude %>">
+      <script type="application/json" id="posts-data">
+        <%= raw @posts.to_json(only: [:id, :name, :images, :latitude, :longitude, :introduction]) %>
+      </script>
+      <%= javascript_pack_tag 'map_genre', 'data-turbolinks-track': 'reload' %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
 
       <div class="row">
         <%= render 'public/posts/list', posts: @posts %>

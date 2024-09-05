@@ -55,15 +55,14 @@
         <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
 
         <div class="form-group mt-3">
-          <%= f.submit '投稿', class: "btn btn-success" %>
+          <%= f.submit '更新', class: "btn btn-success" %>
         </div>
       <% end %>
         <p>マーカーをドラッグ＆ドロップで位置の調整してください</p>
-        <p>マップがうまく表示されない場合はページを更新してください</p>
         <div id='map' class="border border-dark"></div>
-
         <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
-        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>&callback=initMap" async defer></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
+
     </div>
   </div>
 </div>

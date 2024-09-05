@@ -18,7 +18,14 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.page(params[:page])
+    respond_to do |format|
+      format.html do
+        @posts = Post.page(params[:page])
+      end
+      format.json do
+        @posts = Post.all
+      end
+    end
   end
 
   def show

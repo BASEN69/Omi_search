@@ -1,6 +1,7 @@
 <div id="star_<%= post.id %>"></div>
 <script>
-$(document).on('turbolinks:load', function() {
+//$(document).on('turbolinks:load', function() {
+  $(function(){
   let elem = document.querySelector('#star_<%= post.id %>');
   if (elem == null) return;
 

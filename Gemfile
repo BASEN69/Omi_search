@@ -60,6 +60,10 @@ gem 'devise'
 gem 'kaminari','~> 1.2.1'
 
 gem 'dotenv-rails'
+
+#位置情報のgem
+gem 'geocoder'
+
 group :production do
   gem 'mysql2'
 end
@@ -67,6 +71,3 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-
-#位置情報のgem
-gem 'geocoder'
