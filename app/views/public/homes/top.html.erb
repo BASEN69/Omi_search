@@ -62,7 +62,7 @@
                     <tbody>
                       <tr>
                         <td><%= post.name %></td>
-                        <td><%= link_to post.introduction.truncate(15, omission: "　続きを読む"), post_path(post.id) %></td>
+                        <td><%= link_to post.introduction.truncate(15, omission: "...続きを読む"), post_path(post.id) %></td>
                       </tr>
                     </tbody>
                   </table>
