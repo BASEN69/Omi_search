@@ -20,6 +20,12 @@ taro = User.find_or_create_by!(email: "asasas@exmple.com") do |user|
   user.password = "asasas1919"
 end
 
+taku = User.find_or_create_by!(email: "asas@exmple.com") do |user|
+  user.name = "たくや"
+  user.nick_name = "taku"
+  user.password = "asasas1919"
+end
+
 Admin.find_or_create_by!(email: "admin@exmple.com") do |admin|
   admin.password = "asasas1969"
 end
@@ -86,7 +92,10 @@ Post.find_or_create_by!(name: "ままどーる") do |post|
   post.category = "会津若松市"
   post.user = mike
   post.genre = Genre.find_by(name: "福島県" )
-  post.address = "福島県会津若松市門田町"
+  post.star = "5"
+  post.address = "福島県会津若松市"
+  post.latitude = 37.488041733652715
+  post.longitude = 139.92967979049072
 end
 
 Post.find_or_create_by!(name: "エキソンパイ") do |post|
@@ -94,7 +103,63 @@ Post.find_or_create_by!(name: "エキソンパイ") do |post|
   post.category = "会津若松市"
   post.user = taro
   post.genre = Genre.find_by(name: "福島県" )
-  post.address = "福島県会津若松市門田町"
+  post.star = "4"
+  post.address = "福島県会津若松市"
+  post.latitude = 37.488041733652715
+  post.longitude = 139.92967979049072
+  post.images.attach(
+    ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/IMG_7415.jpg"), filename: "IMG_7415.jpg"),
+  )
+end
+
+Post.find_or_create_by!(name: "揚げパン") do |post|
+  post.introduction = "市役所の近くで種類も豊富で何回も行きたい！"
+  post.category = "川越市"
+  post.user = taku
+  post.genre = Genre.find_by(name: "埼玉県" )
+  post.star = "4"
+  post.address = "埼玉県川越市"
+  post.latitude = 35.92468606449596
+  post.longitude = 139.48520874959868
+end
+
+Post.find_or_create_by!(name: "かりんとう") do |post|
+  post.introduction = "三種類の味がって好みの味でぱくぱく食べれる！"
+  post.category = "川越市"
+  post.user = taku
+  post.genre = Genre.find_by(name: "埼玉県" )
+  post.star = "4"
+  post.address = "埼玉県川越市"
+  post.latitude = 35.923627462494
+  post.longitude = 139.4830612048935
+  post.images.attach(
+    ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/IMG_7416.jpg"), filename: "IMG_7416.jpg"),
+  )
+end
+
+Post.find_or_create_by!(name: "あかべこ") do |post|
+  post.introduction = "赤い牛って意味らしいです！首が上下に揺れて可愛い"
+  post.category = "会津若松市"
+  post.user = taro
+  post.genre = Genre.find_by(name: "福島県" )
+  post.star = "4"
+  post.address = "福島県会津若松市"
+  post.latitude = 37.488041733652715
+  post.longitude = 139.92967979049072
+  post.images.attach(
+    ActiveStorage::Blob.create_and_upload!(io: File.open("#{Rails.root}/db/fixtures/akabeko.png"), filename: "akabeko.png"),
+  )
+end
+
+Post.find_or_create_by!(name: "喜多方ラーメン") do |post|
+  post.introduction = "あっさり醤油で美味しい！持ち帰りの生麵あるから家でも楽しめる"
+  post.category = "会津若松市"
+  post.user = taro
+  post.genre = Genre.find_by(name: "福島県" )
+  post.star = "4"
+  post.address = "福島県会津若松市城西町"
+  post.latitude = 37.482493660396756
+  post.longitude = 139.91690130793458
 end
 
 puts "Seedの実行が完了"

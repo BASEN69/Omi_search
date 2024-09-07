@@ -1,0 +1,11 @@
+ja:
+  devise:
+    failure:
+      unauthenticated: "ログインしてください。"
+      unconfirmed: "メールアドレスの確認が必要です。"
+      invalid: "メールアドレスまたはパスワードが違います。"
+      locked: "アカウントがロックされています。"
+      last_attempt: "もう一度失敗するとアカウントがロックされます。"
+      timeout: "セッションがタイムアウトしました。もう一度ログインしてください。"
+      not_found_in_database: "メールアドレスまたはパスワードが違います。"
+      inactive: "アカウントが有効ではありません。"

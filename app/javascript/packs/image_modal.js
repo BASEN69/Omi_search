@@ -12,6 +12,6 @@ function closeModal() {
   modal.style.display = 'none';
 }
 
-// グローバルに関数を公開するため
+// erbに渡すため
 window.openModal = openModal;
 window.closeModal = closeModal;

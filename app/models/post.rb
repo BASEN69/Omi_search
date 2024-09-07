@@ -7,6 +7,8 @@ class Post < ApplicationRecord
   validates :name, presence: true
   validates :introduction, presence: true, length: { maximum: 200 }
   validates :category, presence: true
+  validates :longitude, presence: true
+  validates :latitude, presence: true
   validates :address, presence: true
 
   geocoded_by :address
