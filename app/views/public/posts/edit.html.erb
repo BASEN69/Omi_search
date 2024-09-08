@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12">
       <h1>投稿内容の編集</h1>
       <% if @post.errors.any? %>
         <ul class="alert alert-danger" role="alert">
@@ -27,23 +27,42 @@
           <small>※　購入した市町村（〇〇市や〇〇町や〇〇村）のみ入力してください</small><br>
           <small class="font-weight-bold">例:　川越市で購入した場合「川越市」と入力</small>
         </div>
-        <div class="form-group">
-          <%= f.label :"商品画像" %><br>
-          <%= f.file_field :images, multiple: true, id: 'images' %><br>
-          <small>※画像を3枚まで選択可能です</small><br><br>
+        <div class="row" style="padding: 15px;">
+          <div class="form-group mr-5 border border-dark pr-3 pl-3 pt-1">
+            <%= f.label :images, "商品画像" %><br>
+            <%= f.file_field :images, multiple: true, id: 'images' %><br>
+            <small>※画像を3枚まで選択可能です</small><br><br>
+          </div>
+            <div class="form-group ml-3 pr-3 pl-3 pt-4">
+              <%= render 'star', post: @post %>
+              <p class="mt-2">レビューの変更は出来ません</p>
+            </div>
         </div>
         <div class="form-group">
-          <%= f.label :genre_id, "都道府県" %><br>
-          <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "ジャンルを選択", class: "form-control" %>
+          <%= f.label :genre_id, "都道府県" %><small style="color: red;">※必須入力</small><br>
+          <%= f.collection_select :genre_id, Genre.all, :id, :name, prompt: "都道府県を選択", class: "form-control" %>
         </div>
-
-        <p>後々、レビュー・緯度経度を追加</p>
-
         <div class="form-group">
-          <%= f.submit '更新', class: "btn btn-success" %><br><br>
-          <%= link_to "戻る", :back, class: 'btn btn-secondary'%>
+          <%= f.label "住所" %><small style="color: red;">※必須入力</small>
+          <%= f.text_field :address, id: :address, class: "form-control", placeholder: "住所　例：埼玉県川越市幸町　など番地無しも可能です" %>
+          <div class="input-group-append">
+            <button id="searchButton" type="button" class="btn btn-primary">検索</button>
+          </div>
+        </div>
+        <%= f.label :latitude, "緯度" %>
+        <%= f.text_field :latitude, id: :latitude, placeholder: "緯度" %><br>
+        <%= f.label :longitude, "経度" %>
+        <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
+
+        <div class="form-group mt-3">
+          <%= f.submit '更新', class: "btn btn-success" %>
         </div>
       <% end %>
+        <p>マーカーをドラッグ＆ドロップで位置の調整してください</p>
+        <div id='map' class="border border-dark"></div>
+        <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
+        <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
+
     </div>
   </div>
 </div>

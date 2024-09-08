@@ -2,8 +2,24 @@
   <div class="row">
     <div class="col-md-10">
       <h2 class="mb-5"><%= @genre.name %> の投稿一覧</h2>
+      <h3 class="">地図</h3>
+      <div id='map' class="border border-dark mb-3"></div>
+      <input type="hidden" id="latitude" value="<%= @genre.latitude %>">
+      <input type="hidden" id="longitude" value="<%= @genre.longitude %>">
+      <script type="application/json" id="posts-data">
+        <%= raw @posts.to_json(only: [:id, :name, :images, :latitude, :longitude, :introduction]) %>
+      </script>
+      <%= javascript_pack_tag 'map_genre', 'data-turbolinks-track': 'reload' %>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
+
       <div class="row">
-        <%= render 'public/posts/list', posts: @posts %>
+        <% if @posts.any? %>
+          <%= render 'public/posts/list', posts: @posts %>
+        <% else %>
+          <div class="col mt-3 text-center">
+            <h2><%= @genre.name %>の投稿はまだありません</h2>
+          </div>
+        <% end %>
       </div>
     </div>
     <%= render 'public/genres/genre_lists' %>

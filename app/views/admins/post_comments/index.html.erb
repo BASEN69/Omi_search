@@ -1,22 +1,25 @@
 <div class="container">
-            <table class="table">
-              <thead class="table-light">
-                <tr>
-                  <td scope="col" style="width: 50% ">コメント</td>
-                  <td scope="col" style="width: 15%">ユーザー</td>
-                  <td scope="col" style="width: 20%">投稿日時</td>
-                  <td scope="col" style="width: 15%"></td>
-                </tr>
-              </thead>
-              <% @comments.order(created_at: :desc).each do |post_comment| %>
-                <tbody>
-                  <tr>
-                    <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
-                    <td><%= post_comment.user.nick_name %></td>
-                    <td><%= post_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-                    <td><%= link_to "削除", admins_post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に消しますか？" %></td>
-                  </tr>
-                </tbody>
-              <% end %>
-            </table>
+  <table class="table">
+    <thead class="table-active">
+      <tr>
+        <th scope="col" style="width: 50% ">コメント</th>
+        <th scope="col" style="width: 15%">ユーザー</th>
+        <th scope="col" style="width: 20%">投稿日時</th>
+        <th scope="col" style="width: 15%"></th>
+      </tr>
+    </thead>
+    <% @comments.order(created_at: :desc).each do |post_comment| %>
+    <tbody>
+      <tr>
+        <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
+        <td><%= post_comment.user.nick_name %></td>
+        <td><%= post_comment.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+        <td><%= link_to "削除", admins_post_comment_path(post_comment), method: :delete, "data-confirm" => "本当に消しますか？" %>&emsp;&emsp;
+            <%= link_to "投稿へ", admins_post_path(post_comment.post) %>
+        </td>
+      </tr>
+    </tbody>
+    <% end %>
+  </table>
+  <%= paginate @comments %>
 </div>

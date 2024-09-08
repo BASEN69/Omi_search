@@ -1,0 +1,46 @@
+ja:
+  devise:
+    failure:
+      already_authenticated: "すでにログインしています。"
+      unauthenticated: "ログインが必要です。"
+    sessions:
+      signed_in: "ログインしました。"
+      signed_out: "ログアウトしました。"
+    registrations:
+      signed_up: "アカウントを作成しました。"
+      updated: "アカウント情報を更新しました。"
+      destroyed: "アカウントを削除しました。"
+    passwords:
+      send_instructions: "パスワード再設定の案内をメールしました。"
+      updated: "パスワードが更新されました。"
+    confirmations:
+      send_instructions: "確認メールを送信しました。"
+      confirmed: "メールアドレスの確認が完了しました。"
+  errors:
+    messages:
+      not_saved:
+        one: "1件のエラーが発生したため、保存できませんでした。"
+        other: "%{count}件のエラーが発生したため、保存できませんでした。"
+      already_authenticated: "すでにログインしています。"
+  activerecord:
+    attributes:
+      user:
+        name: "ユーザー名"
+        nick_name: "ニックネーム"
+        email: "メールアドレス"
+        password: "パスワード"
+      post:
+        name: "商品名"
+        genre: "都道府県"
+        introduction: "商品説明"
+        category: "市町村"
+        address: "住所"
+        latitude: "緯度"
+        longitude: "経度"
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'

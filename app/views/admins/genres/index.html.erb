@@ -23,10 +23,40 @@
     </div>
     <div class="col-5 form_group">
       <%= form_with model: @genre, url: admins_genres_path do |f| %>
-        <%= f.label :"ジャンル名" %>
-        <%= f.text_field :name %>
+        <%= f.label :"ジャンル名" %><br>
+        <%= f.text_field :name, id: 'genre-name' %><br><br>
+        <%= f.label :latitude, "緯度" %><br>
+        <%= f.text_field :latitude, id: 'latitude', class: "form-control", placeholder: "例: 35.6895" %><br>
+        <%= f.label :longitude, "経度" %><br>
+        <%= f.text_field :longitude, id: 'longitude', class: "form-control", placeholder: "例: 139.6917" %><br>
         <%= f.submit :"追加" %>
       <% end %>
+
+      <script>
+        document.addEventListener('DOMContentLoaded', function() {
+          var geocoder = new google.maps.Geocoder();
+
+          document.getElementById('genre-name').addEventListener('blur', function() {
+            var name = this.value;
+            if (name) {
+              geocodeAddress(name);
+            }
+          });
+
+          function geocodeAddress(address) {
+            geocoder.geocode({ 'address': address }, function(results, status) {
+              if (status === 'OK') {
+                var location = results[0].geometry.location;
+                document.getElementById('latitude').value = location.lat();
+                document.getElementById('longitude').value = location.lng();
+              } else {
+                alert('該当する結果がありません');
+              }
+            });
+          }
+        });
+      </script>
+      <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
     </div>
   </div>
 </div>

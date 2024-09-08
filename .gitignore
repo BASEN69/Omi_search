@@ -41,3 +41,6 @@ yarn-debug.log*
 
 /.env
 
+/jquery.jpostal.js
+
+/raty

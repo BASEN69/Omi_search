@@ -2,28 +2,29 @@
   <div class="row">
     <div class="col-10">
       <h2>ユーザー一覧</h2>
-      <% @users.order(created_at: :desc).each do |user| %>
         <table class="table">
           <thead>
            <tr class="table-active">
-              <th scope="col" style="width: 20%">名前</th>
+              <th scope="col" style="width: 20%">名前（投稿数）</th>
               <th scope="col" style="width: 20%">ニックネーム</th>
               <th scope="col" style="width: 30%">email</th>
               <th scope="col" style="width: 20%">登録日時</th>
               <th></th>
             </tr>
            </thead>
-           <tbody>
-             <tr>
-               <td><%= link_to admins_user_path(user.id) do %><%= user.name %><% end %></td>
-               <td><%= user.nick_name %></td>
-               <td><%= user.email %></td>
-               <td><%= user.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
-               <td><%= link_to '強制退会', admins_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
-             </tr>
-           </tbody>
+           <% @users.order(created_at: :desc).each do |user| %>
+             <tbody>
+               <tr>
+                 <td><%= link_to admins_user_path(user.id) do %><%= "#{user.name} (#{user.posts.count})" %><% end %></td>
+                 <td><%= user.nick_name %></td>
+                 <td><%= user.email %></td>
+                 <td><%= user.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
+                 <td><%= link_to '強制退会', admins_user_path(user), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
+               </tr>
+             </tbody>
+           <% end %>
         </table>
-      <% end %>
+      <%= paginate @users %>
     </div>
   </div>
 </div>

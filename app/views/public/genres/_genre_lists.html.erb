@@ -1,25 +1,42 @@
 <div class="col-md-2">
   <div class="row">
     <% if user_signed_in? %>
-      <%= form_with url: search_path, method: :get, local: true do |f| %>
-        <div class="col-md-12">
+      <div class="col-md-12">
+        <div class="sideber">
+          <h3>検索</h3>
+          <div class="form-group" style="">
+            <%= form_with url: search_path, method: :get, local: true do |f| %>
+              <%= f.label :content, "投稿・ユーザー検索" %>
+              <%= f.text_field :content, class: "form-control mb-1" %>
+              <%= f.select :model, options_for_select({"投稿" => "post", "ユーザー" => "user"}), {}, class: "form-control mb-1" %>
+              <%= f.select :method, options_for_select({"部分一致" => "partial", "完全一致" => "perfect"}), {}, class: "form-control mb-1" %>
+              <%= f.submit "検索", class: "btn btn-primary mt-1" %>
+            <% end %>
+          </div>
           <div class="form-group">
-            <h3>検索</h3>
-            <%= f.label :content, "投稿・ユーザー検索" %>
-            <%= f.text_field :content, class: "form-control mb-1" %>
-            <%= f.select :model, options_for_select({"投稿" => "post", "ユーザー" => "user"}), {}, class: "form-control mb-1" %>
-            <%= f.select :method, options_for_select({"部分一致" => "partial", "完全一致" => "perfect"}), {}, class: "form-control mb-1" %>
-            <%= f.submit "検索", class: "btn btn-primary mt-1" %>
+            <%= form_with url: tagsearches_search_path, method: :get, local: true do |f| %>
+              <%= f.label :content, "市町村検索" %>
+              <%= f.text_field :content, class: "form-control mb-1" %>
+              <%= f.submit "検索", class: "btn btn-primary mt-1" %>
+            <% end %>
           </div>
         </div>
-      <% end %>
+      </div>
+    <% else %>
+    <div class="col-md-12 mb-3">
+      <div class="sideber text-center border p-2">
+        <p><small>ログインすると</small><br><br>投稿検索<br>地域検索<br><br>使用可能</p>
+        <p><%= link_to "ログイン", new_user_session_path %></p>
+        <p><%= link_to "新規登録", new_user_registration_path %></p>
+      </div>
+    </div>
     <% end %>
     <div class="col-md-12">
       <h3>都道府県</h3>
       <ul class="list-group">
         <% Genre.all.each do |genre| %>
           <li class="list-group-item">
-            <%= link_to genre.name, genre_path(genre.id) %>
+            <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
           </li>
         <% end %>
       </ul>

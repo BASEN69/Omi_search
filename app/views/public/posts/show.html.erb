@@ -6,7 +6,13 @@
           <% @post.images.each do |image| %>
             <div class="mb-5 ">
               <div class="card ml-3 mr-3 text-center">
-                <%= image_tag image, size: "250x250" %>
+                <%= image_tag image, style: 'cursor: pointer;', onclick: 'openModal(this)', size: "250x250" %>
+                <!-- モーダルの構造 -->
+                <div id="imageModal" class="modal">
+                  <span class="close" onclick="closeModal()">&times;</span>
+                  <img id="modalImage" class="modal-content">
+                </div>
+                <small>画像をクリックすると拡大できます</small>
               </div>
             </div>
           <% end %>
@@ -22,13 +28,13 @@
               <table class="table table-bordered mb-3">
                 <thead>
                   <tr class="table-active">
-                    <th scope="col" style="width: 30%">商品名</th>
+                    <th scope="col" style="width: 30%" class="text-center">商品名</th>
                     <th scope="col" style="width: 70%">商品説明</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><%= @post.name %></td>
+                    <td class="text-center"><%= @post.name %></td>
                     <td style="width: 70%; word-wrap: break-word; white-space: normal;"><%= @post.introduction %></td>
                   </tr>
                 </tbody>
@@ -36,33 +42,50 @@
               <table class="table table-bordered">
                 <thead>
                   <tr class="table-active">
-                    <th scope="col" style="width: 33%">都道府県</th>
-                    <th scope="col" style="width: 33%">市町村</th>
+                    <th scope="col" style="width: 20%" class="post-item text-center">都道府県</th>
+                    <th scope="col" style="width: 30%" class="post-item-category text-center">市町村</th>
+                    <th scope="col" style="width: 20%" class="post-item-star text-center">レビュー</th>
                     <% if @post.user == current_user %>
-                      <th scope="col" style="width: 33%" class="text-center">編集</th>
+                      <th scope="col" style="width: 30%" class="post-item-edit text-center">編集</th>
                     <% else %>
-                      <th scope="col" style="width: 33%">ユーザー</th>
+                      <th scope="col" style="width: 30%" class="post-item-user text-center">ユーザー</th>
                     <% end %>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
-                    <td><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
-                    <td><%= @post.category %></td>
-                    <% if @post.user == current_user %>
-                      <td scope="col" style="width: 15%" class="text-center"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success mr-2" %><%= link_to "削除", post_path(@post), class: "btn btn-danger ml-2", method: :delete, "data-confirm" => "本当に消しますか？"  %></a></th>
+                    <td class="post-item text-center"><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
+                    <% if user_signed_in? %>
+                      <td class="post-item text-center"><%= link_to @post.category, tagsearches_search_path(content: @post.category) %></td>
                     <% else %>
-                      <td><%= link_to user_path(@post.user_id) do %><%= @post.user.nick_name %><% end %></td>
+                      <td class="post-item text-center"><%= @post.category %>
+                    <% end %>
+                    <td class="text-center"><%= render 'star', post: @post %></td>
+                    <% if @post.user == current_user %>
+                      <td scope="col" style="width: 15%" class="post-item-edit text-center"><%= link_to "編集", edit_post_path(@post), class: "btn btn-success mr-2" %><%= link_to "削除", post_path(@post), class: "btn btn-danger ml-2", method: :delete, "data-confirm" => "本当に消しますか？"  %></a></th>
+                    <% else %>
+                      <td class="post-item text-center"><%= link_to user_path(@post.user_id) do %><%= @post.user.nick_name %><% end %></td>
                     <% end %>
                   </tr>
                 </tbody>
               </table><br>
+              <div>
+                <p>住所：<%= @post.address %></p>
+                <small>※住所は目安としてお使いください</small>
+              </div>
+              <div id="map" class="border border-dark"></div>
+              <!-- 緯度と経度を隠しフィールドでセットして、JavaScriptで利用 -->
+              <input type="hidden" id="latitude" value="<%= @post.latitude %>">
+              <input type="hidden" id="longitude" value="<%= @post.longitude %>">
+              <%= javascript_pack_tag 'map_show', 'data-turbolinks-track': 'reload' %>
+
               <% if @post.user == current_user %>
-                <p class="text-right"><%= link_to "マイページへ", mypage_path %></p>
+                <p class="text-right mt-3"><%= link_to "マイページへ", mypage_path %></p>
               <% end %>
-              <p class="text-right mb-5"><%= link_to "投稿一覧へ", posts_path %></p>
+              <p class="text-right mb-5 mt-3"><%= link_to "投稿一覧へ", posts_path %></p>
+              <hr>
               <% if user_signed_in? %>
-                <div class="col-11 mb-5 form-group">
+                <div class="col-11 mt-5 mb-5 form-group">
                   <%= form_with model: [@post,@post_comment] do |f| %>
                     <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
                     <%= f.submit "コメント", class: "btn btn-primary mt-3" %>
@@ -72,9 +95,9 @@
               <table class="table">
                 <thead class="table-light">
                   <tr>
-                    <td scope="col" style="width: 55% ">コメント</td>
-                    <td scope="col" style="width: 15%">ユーザー</td>
-                    <td scope="col" style="width: 10%">投稿日</td>
+                    <td scope="col" style="width: 55%" >コメント</td>
+                    <td scope="col" style="width: 15%"class="comment-item">ユーザー</td>
+                    <td scope="col" style="width: 10%"class="comment-item">投稿日</td>
                     <td scope="col" style="width: 20%"></td>
                   </tr>
                 </thead>
@@ -82,8 +105,8 @@
                   <tbody>
                     <tr>
                       <td style="width: 60% word-wrap: break-word; white-space: normal;"><%= post_comment.comment %></td>
-                      <td><%= post_comment.user.nick_name %></td>
-                      <td><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
+                      <td class="comment-item"><%= post_comment.user.nick_name %></td>
+                      <td class="comment-item"><%= post_comment.created_at.strftime('%Y/%m/%d') %></td>
                       <td>
                       <% if post_comment.user == current_user %>
                         <%= link_to "編集", edit_post_post_comment_path(@post, post_comment), class: "btn btn-success" %>
@@ -101,3 +124,5 @@
     <%= render 'public/genres/genre_lists' %>
   </div>
 </div>
+<%= javascript_pack_tag 'image_modal' %>
+<script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>

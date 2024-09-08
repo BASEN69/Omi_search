@@ -25,7 +25,9 @@
              </tr>
            </tbody>
         </table>
-        <p><p>コメント件数: <%= post.post_comments.count %>"|"投稿日時: <%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %>"|"更新日時: <%= post.updated_at.strftime("%Y年%m月%d日 %H:%M") %></p></p>
+        <hr>
+        <p>コメント件数: <%= post.post_comments.count %>&emsp;|&emsp;投稿日時: <%= post.created_at.strftime("%Y年%m月%d日 %H:%M") %>&emsp;|&emsp;更新日時: <%= post.updated_at.strftime("%Y年%m月%d日 %H:%M") %></p>
+        <p>レビュー<%= render 'public/posts/star', post: post %></p>
         <p><%= link_to '詳細を見る', admins_post_path(post) %></p>
         <p><%= link_to '削除', admins_post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
       <% end %>

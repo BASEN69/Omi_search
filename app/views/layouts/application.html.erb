@@ -13,67 +13,73 @@
 
   <body>
     <header>
-      <div class="container-fluid">
-        <nav class="row navbar navbar-expand-lg " style="background-color: #ff9900">
-          <div class="offset-1">
-            <a class="navbar-brand" href="/"><%= image_tag ('log.png') %></a>
+      <div class="container-fluid"  style="position: fixed; top: 0; width: 100%; z-index: 10;">
+        <nav class="row navbar navbar-expand-lg " style="background-color: rgba(255, 153, 0, 0.92);">
+          <div class="offset-md-1 col-md-2 offset-sm-1 col-sm-2">
+            <a class="navbar-brand" href="/"><%= image_tag ('noname.jpg'), style: 'width: 50%;'%></a>
           </div>
-            <div class="offset-6">
-              <div class="row list-inline">
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー <i class="fa-solid fa-bars"></i></a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <%= link_to root_path, class: 'dropdown-item ' do %>
-                      <i class="fa-solid fa-house"></i> トップページ <% end %>
-                    <%= link_to about_path, class: 'dropdown-item ' do %>
-                      <i class="fa-solid fa-link"></i> アバウト<% end %>
+          <div class="offset-md-6 col-md-1 offset-sm-6 col-sm-1">
+            <div class="row list-inline">
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle text-white" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">メニュー <i class="fa-solid fa-bars"></i></a>
+                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <%= link_to root_path, class: 'dropdown-item ' do %>
+                    <i class="fa-solid fa-house"></i> トップページ <% end %>
+                  <%= link_to about_path, class: 'dropdown-item ' do %>
+                    <i class="fa-solid fa-link"></i> アバウト<% end %>
+                  <div class="dropdown-divider"></div>
+                  <%= link_to posts_path, class: 'dropdown-item ' do %>
+                    <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
+                  <% if user_signed_in? %>
+                    <%= link_to mypage_path, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-user"></i> マイページ <% end %>
+                    <%= link_to new_post_path, class: 'dropdown-item', data: {turbolinks: "false"} do %>
+                      <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
                     <div class="dropdown-divider"></div>
-                    <%= link_to posts_path, class: 'dropdown-item ' do %>
-                      <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
-                    <% if user_signed_in? %>
-                      <%= link_to mypage_path, class: 'dropdown-item' do %>
-                        <i class="fa-solid fa-user"></i> マイページ <% end %>
-                      <%= link_to new_post_path, class: 'dropdown-item' do %>
-                        <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
-                      <div class="dropdown-divider"></div>
-                      <%= link_to destroy_user_session_path,method: :delete, class: 'dropdown-item' do %>
-                        <i class="fa-solid fa-right-from-bracket"></i> ログアウト<% end %>
-                    <% else %>
-                      <div class="dropdown-divider"></div>
-                      <%= link_to new_user_registration_path, class: 'dropdown-item' do %>
-                        <i class="fa-solid fa-user-plus"></i> 新規登録 <% end %>
-                      <%= link_to new_user_session_path, class: 'dropdown-item' do %>
-                        <i class="fa-solid fa-right-to-bracket"></i> ログイン <% end %>
-                    <% end %>
-                  </div>
-                </li>
-              </div>
+                    <%= link_to destroy_user_session_path,method: :delete, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-right-from-bracket"></i> ログアウト<% end %>
+                  <% else %>
+                    <div class="dropdown-divider"></div>
+                    <%= link_to new_user_registration_path, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-user-plus"></i> 新規登録 <% end %>
+                    <%= link_to new_user_session_path, class: 'dropdown-item' do %>
+                      <i class="fa-solid fa-right-to-bracket"></i> ログイン <% end %>
+                  <% end %>
+                </div>
+              </li>
             </div>
+          </div>
         </nav>
       </div>
     </header>
-
-    <main class="container mt-3">
+    <main class="container" style="margin-top: 120px;">
       <p class="notice"><%= notice %></p>
       <p class="alert"><%= alert %></p>
       <%= yield %>
     </main>
     <footer class="mt-5 pt-5 pb-4" style="background-color: #ff9900">
       <div class="container">
-        <div class="col-md-4">
-              <p>お土産情報を共有する善意あるサイト</p>
-        </div>
-           <div class="col-md-8">
-            <h6 class="text-white mt-2 mb-3">使用素材 Link</h6>
+        <div class="row">
+          <div class="col-md-4 text-center">
+            <p class="text-white">お土産情報を共有する善意あるサイト</p>
+            <%= image_tag ('noname.jpg'), style: 'width: 50%; border:solid 0.5px;'  %>
+          </div>
+          <div class="col-md-4 text-center">
+            <h6 class="text-white mt-2 mb-3">使用素材 Links</h6>
             <ul class="p-0 list-unstyled">
               <li>
-                <a href="https://www.irasutoya.com/" title="License informations" class="text-white">いらすとや</a><br>
-                <a href="https://photock.jp/list/birthplace/" title="License informations" class="text-white">Photock</a>
+                <a href="https://www.irasutoya.com/" title="License informations" class="text-white"><u>いらすとや</u></a><br>
+                <a href="https://photock.jp/list/birthplace/" title="License informations" class="text-white"><u>Photock</u></a>
               </li>
             </ul>
+          </div>
+          <div class="col-md-4 text-center">
+            <a href="https://x.com/BASEN0219" title="License informations" class="text-white"><span style="background-color:black;"><i class="fa-brands fa-x-twitter"></i></span> <u>勉学の記録</u></a>
+            <br><br><%= link_to about_path, class: 'text-white' do %><i class="fa-solid fa-link"></i> <u>アバウト<% end %></u>
           </div>
         </div>
       </div>
     </footer>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-jpostal-ja@2.14.45/jquery.jpostal.min.js"></script>
   </body>
 </html>
