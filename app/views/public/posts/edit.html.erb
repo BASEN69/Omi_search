@@ -58,7 +58,7 @@
           <%= f.submit '更新', class: "btn btn-success" %>
         </div>
       <% end %>
-        <p>マーカーをドラッグ＆ドロップで位置の調整してください</p>
+        <p>マーカーをドラッグ＆ドロップで<u style="color:blue; ">購入位置へ</u>調整してください</p>
         <div id='map' class="border border-dark"></div>
         <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
