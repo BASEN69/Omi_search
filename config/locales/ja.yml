@@ -37,3 +37,10 @@ ja:
         address: "住所"
         latitude: "緯度"
         longitude: "経度"
+  views:
+    pagination:
+      first: '最初'
+      last: '最後'
+      previous: '前'
+      next: '次'
+      truncate: '...'

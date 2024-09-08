@@ -1,11 +1,11 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10">
+    <div class="col-md-10 col-sm-12">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
             <div class="overlay-container">
-              <%= image_tag 'middle-photo0000-7478.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'First slide', aria: { label: 'Placeholder: First slide' } %>
+              <%= image_tag 'middle-photo0000-7478.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '450', alt: 'First slide', aria: { label: 'Placeholder: First slide' } %>
               <div class="overlay">
                 <div class="overlay-text">旅先の思い出に</div>
               </div>
@@ -13,7 +13,7 @@
           </div>
           <div class="carousel-item">
             <div class="overlay-container">
-              <%= image_tag 'middle-photo0000-6253.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Second slide', aria: { label: 'Placeholder: Second slide' } %>
+              <%= image_tag 'middle-photo0000-6253.jpg', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '450', alt: 'Second slide', aria: { label: 'Placeholder: Second slide' } %>
               <div class="overlay">
                 <div class="overlay-text">楽しさのお裾分けに</div>
               </div>
@@ -21,7 +21,7 @@
           </div>
           <div class="carousel-item">
             <div class="overlay-container">
-              <%= image_tag 'akabeko.png', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '400', alt: 'Third slide', aria: { label: 'Placeholder: Third slide' } %>
+              <%= image_tag 'akabeko.png', class: 'bd-placeholder-img bd-placeholder-img-lg d-block w-100', width: '800', height: '450', alt: 'Third slide', aria: { label: 'Placeholder: Third slide' } %>
               <div class="overlay">
                 <div class="overlay-text">お土産探してみませんか？</div>
               </div>
@@ -37,21 +37,21 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <h2 class="mb-5 mt-5 text-center"><%= image_tag 'omiyage.png', size: '100x100' %>&emsp;&emsp;<u class="new-post">最新投稿（6件)</u>&emsp;&emsp;<%= image_tag 'omiyage.png', size: '100x100' %></h2>
+      <h2 class="col-md-12 col-sm-12 mb-5 mt-5 text-center rounded-circle" style="background-color: rgba(255, 255, 0, 0.4);"><%= image_tag 'omiyage.png', width: '10%', height: '10%' %>&emsp;<u class="new-post">最新投稿（6件)</u>&emsp;<%= image_tag 'omiyage.png', width: '10%', height: '10%' %></h2>
       <div class="row">
       <% @posts.order(created_at: :desc).limit(6).each do |post| %>
-        <div class="col-md-12 mb-4">
+        <div class="col-md-12 col-sm-12 mb-4">
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-12">
                   <% if post.images.attached? %>
-                    <%= image_tag post.images[0], size: '200x200' %>
+                    <%= image_tag post.images[0], width: '100%', height: '100%' %>
                   <% else %>
-                    <%= image_tag 'no_image.jpg', size: '200x200' %>
+                    <%= image_tag 'no_image.jpg', width: '100%', height: '100%' %>
                   <% end %>
                 </div>
-                <div class="col-md-9">
+                <div class="col-md-9 col-sm-12">
                   <table class="table table-bordered mb-3">
                     <thead>
                       <tr class="table-active">
@@ -69,28 +69,28 @@
                   <table class="table table-bordered">
                     <thead>
                       <tr class="table-active">
-                        <th scope="col" style="width: 15%" class="text-center">都道府県</th>
-                        <th scope="col" style="width: 25%" class="text-center">市町村</th>
+                        <th scope="col" style="width: 15%" class="post-item text-center">都道府県</th>
+                        <th scope="col" style="width: 25%" class="post-item-category text-center">市町村</th>
                         <th scope="col" style="width: 30%" class="text-center">レビュー</th>
-                        <th scope="col" style="width: 30%" class="text-center">ユーザー</th>
+                        <th scope="col" style="width: 30%" class="post-item-user text-center">ユーザー</th>
                       </tr>
                     </thead>
                     <tbody>
                       <tr>
-                        <td class="text-center"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></td>
+                        <td class="post-item text-center"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></td>
                         <% if user_signed_in? %>
-                          <td class="text-center"><%= link_to post.category, tagsearches_search_path(content: post.category) %></td>
+                          <td class="post-item text-center"><%= link_to post.category, tagsearches_search_path(content: post.category) %></td>
                         <% else %>
-                          <td class="text-center"><%= post.category %>
+                          <td class="post-item text-center"><%= post.category %>
                         <% end %>
                         <td class="text-center"><%= render 'public/posts/star', post: post %></td>
-                        <td class="text-center"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></td>
+                        <td class="post-item text-center"><%= link_to user_path(post.user_id) do %><%= post.user.nick_name %><% end %></td>
                       </tr>
                     </tbody>
                   </table>
                   <div class=" row col">
                     <div class="col"><%= link_to "詳細を見る", post_path(post.id) %></div>
-                    <div class="offset-5">コメント件数： <%= post.post_comments.count %></div>
+                    <div class="offset-md-5 offset-sm-3">コメント件数： <%= post.post_comments.count %></div>
                   </div>
                 </div>
               </div>

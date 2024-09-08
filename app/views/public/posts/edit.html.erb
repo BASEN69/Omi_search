@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-10">
+    <div class="col-12">
       <h1>投稿内容の編集</h1>
       <% if @post.errors.any? %>
         <ul class="alert alert-danger" role="alert">
@@ -50,7 +50,7 @@
           </div>
         </div>
         <%= f.label :latitude, "緯度" %>
-        <%= f.text_field :latitude, id: :latitude, placeholder: "緯度" %>
+        <%= f.text_field :latitude, id: :latitude, placeholder: "緯度" %><br>
         <%= f.label :longitude, "経度" %>
         <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
 
