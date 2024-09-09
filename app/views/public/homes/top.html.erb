@@ -1,6 +1,6 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-10 col-sm-12">
+    <div class="col-lg-10 col-md-9 col-sm-12">
       <div id="carouselExampleControls" class="carousel slide" data-ride="carousel">
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -37,21 +37,21 @@
           <span class="sr-only">Next</span>
         </a>
       </div>
-      <h2 class="col-md-12 col-sm-12 mb-5 mt-5 text-center rounded-circle" style="background-color: rgba(255, 255, 0, 0.4);"><%= image_tag 'omiyage.png', width: '10%', height: '10%' %>&emsp;<u class="new-post">最新投稿（6件)</u>&emsp;<%= image_tag 'omiyage.png', width: '10%', height: '10%' %></h2>
+      <h2 class="col-12 mb-5 mt-5 text-center rounded-circle" style="background-color: rgba(255, 255, 0, 0.4);"><%= image_tag 'omiyage.png', width: '10%', height: '10%' %>&emsp;<u class="new-post">最新投稿（6件)</u>&emsp;<%= image_tag 'omiyage.png', width: '10%', height: '10%' %></h2>
       <div class="row">
       <% @posts.order(created_at: :desc).limit(6).each do |post| %>
-        <div class="col-md-12 col-sm-12 mb-4">
+        <div class="col-12 mb-4">
           <div class="card">
             <div class="card-body">
               <div class="row">
-                <div class="col-md-3 col-sm-12">
+                <div class="col-lg-3 col-md-12 col-sm-12">
                   <% if post.images.attached? %>
                     <%= image_tag post.images[0], width: '100%', height: '100%' %>
                   <% else %>
                     <%= image_tag 'no_image.jpg', width: '100%', height: '100%' %>
                   <% end %>
                 </div>
-                <div class="col-md-9 col-sm-12">
+                <div class="col-lg-9 col-md-12 col-sm-12">
                   <table class="table table-bordered mb-3">
                     <thead>
                       <tr class="table-active">

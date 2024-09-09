@@ -53,7 +53,6 @@
         <%= f.text_field :latitude, id: :latitude, placeholder: "緯度" %><br>
         <%= f.label :longitude, "経度" %>
         <%= f.text_field :longitude, id: :longitude, placeholder: "経度" %>
-
         <div class="form-group mt-3">
           <%= f.submit '更新', class: "btn btn-success" %>
         </div>
@@ -62,7 +61,6 @@
         <div id='map' class="border border-dark"></div>
         <%= javascript_pack_tag 'map', 'data-turbolinks-track': 'reload' %>
         <script src="https://maps.googleapis.com/maps/api/js?key=<%= ENV['Maps_API_key'] %>"></script>
-
     </div>
   </div>
 </div>
