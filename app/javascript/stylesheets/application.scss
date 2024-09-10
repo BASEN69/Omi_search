@@ -147,7 +147,7 @@
 
   .post-item, .post-item-category, .post-item-user, .comment-item{
     writing-mode: vertical-rl; /* 縦書き */
-    text-orientation: upright; /* 文字を縦向きに表示 */
+    //text-orientation: upright; /* 文字を縦向きに表示 */
     width: 15%!important;
   }
 
@@ -170,7 +170,6 @@
   .new-post{
     font-size: 20px;
   }
-
 
   /* メインコンテンツのマージン調整 */
   main.container {
