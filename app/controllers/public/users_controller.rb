@@ -1,6 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!, only: [:my_page, :edit]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
+  before_action :ensure_guest_user, only: [:edit, :my_page]
 
   def my_page
     @user = current_user
@@ -52,4 +53,11 @@ class Public::UsersController < ApplicationController
       redirect_to user_path(current_user)
     end
   end
+
+  def ensure_guest_user
+    if current_user.guest_user?
+      redirect_to :root , notice: "ゲストユーザーはプロフィール編集画面へ遷移できません。"
+    end
+  end
+
 end

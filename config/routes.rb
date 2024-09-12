@@ -16,6 +16,9 @@ Rails.application.routes.draw do
   scope module: :public do
 
     devise_for :users
+    devise_scope :user do
+      post "sessions/guest_sign_in", to: "sessions#guest_sign_in"
+    end
     root to: 'homes#top'
     resources :posts, only: [:new, :create, :index, :show, :edit, :update, :destroy] do
       resources :post_comments, only: [:create, :destroy, :edit, :update]

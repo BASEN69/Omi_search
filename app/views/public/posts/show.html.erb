@@ -55,7 +55,7 @@
                 <tbody>
                   <tr>
                     <td class="post-item text-center"><%= link_to genre_path(@post.genre.id) do %><%= @post.genre.name %><% end %></td>
-                    <% if user_signed_in? %>
+                    <% if user_signed_in? && !current_user.guest_user? %>
                       <td class="post-item text-center"><%= link_to @post.category, tagsearches_search_path(content: @post.category) %></td>
                     <% else %>
                       <td class="post-item text-center"><%= @post.category %>
@@ -84,7 +84,7 @@
               <% end %>
               <p class="text-right mb-5 mt-3"><%= link_to "投稿一覧へ", posts_path %></p>
               <hr>
-              <% if user_signed_in? %>
+              <% if user_signed_in? && !current_user.guest_user? %>
                 <div class="col-11 mt-5 mb-5 form-group">
                   <%= form_with model: [@post,@post_comment] do |f| %>
                     <%= f.text_area :comment, placeholder: "コメントはここに", class: "form-control" %>
