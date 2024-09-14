@@ -1,13 +1,7 @@
-
 <div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-9 col-sm-12">
       <h2 class="mb-5"><%= @user == current_user ? "#{@user.nick_name} さんのマイページ" : "#{@user.nick_name}　さんの投稿一覧" %></h2>
-      <% if @user == current_user %>
-      <p class="mt-5">
-        <a class="btn btn-primary" data-toggle="collapse" href="#multiCollapseExample" role="button" aria-expanded="false" aria-controls="multiCollapseExample"><%= current_user.nick_name %> さんの登録情報</a>
-        <br><small> ※クリックすると表示されます</small>
-      </p>
       <div class="row">
         <div class="col">
           <div class="collapse multi-collapse" id="multiCollapseExample">
@@ -35,9 +29,6 @@
           </div>
         </div>
       </div>
-        <div class="m-3">
-          <i class="fas fa-heart" aria-hidden="true" style="color: red;"></i><%= link_to "いいね！した投稿一覧へ", favorites_user_path(@user) %>
-        </div>
       <% end %>
       <div class="row">
         <% @posts.order(created_at: :desc).each do |post| %>

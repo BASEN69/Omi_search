@@ -68,7 +68,8 @@
                     <% end %>
                   </tr>
                 </tbody>
-              </table><br>
+              </table>
+              <%= render "public/favorites/iine", post: @post %><br><br>
               <div>
                 <p>住所：<%= @post.address %></p>
                 <small>※住所は目安としてお使いください</small>

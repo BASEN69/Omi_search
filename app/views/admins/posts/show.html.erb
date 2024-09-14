@@ -43,7 +43,8 @@
       <td><%= @post.created_at.strftime("%Y年%m月%d日 %H:%M") %></td>
     </tbody>
   </table>
-  <%= link_to '削除', admins_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %>
+  <p>いいね数：<%= @post.favorites.count %></p>
+  <p><%= link_to '削除', admins_post_path(@post), method: :delete, data: { confirm: '本当に削除しますか？' } %></p>
   <table class="table mt-5">
     <thead class="table-active">
       <tr>
