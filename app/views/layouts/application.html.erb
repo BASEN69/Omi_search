@@ -35,6 +35,8 @@
                     <% else %>
                       <%= link_to mypage_path, class: 'dropdown-item' do %>
                         <i class="fa-solid fa-user"></i> マイページ <% end %>
+                      <%= link_to favorites_user_path(current_user), class: 'dropdown-item' do %>
+                        <i class="fas fa-heart"  style="color: red;"></i>いいね履歴<% end %>
                       <%= link_to new_post_path, class: 'dropdown-item', data: {turbolinks: "false"} do %>
                         <i class="fa-solid fa-plus"></i> 新規投稿 <% end %>
                     <% end %>
