@@ -40,13 +40,15 @@
         <br>
         <blockquote class="blockquote text-center">
         <h1>早速サイトを利用しよう！</h1>
-        <br><br>
-        <p>みんなの投稿をみてみよう！<br><br><%= link_to '投稿一覧へ', posts_path, class: 'btn btn-info' %><br><br>
-        自分のおススメを共有してみよう！<br><br>
+        <br>
+        <p>みんなの投稿をみてみよう！<br><%= link_to '投稿一覧へ', posts_path, class: 'btn btn-info' %><br><br>
+        自分のおススメを共有してみよう！<br>
         <% if user_signed_in? %>
           <%= link_to '新規投稿', new_post_path, class: 'btn btn-primary' %><br><br>
         <% else %>
           <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary' %> | <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-success' %><br><br>
+          <%= link_to 'ゲストでログイン', sessions_guest_sign_in_path, class: 'btn btn-secondary' %><br>
+          <small>※一部機能が使用可能です。</small>
         <% end %>
         </p>
         </blockquote>

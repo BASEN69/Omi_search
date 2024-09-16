@@ -37,7 +37,7 @@
               <tbody>
                 <tr>
                   <td class="post-item text-center"><%= link_to genre_path(post.genre.id) do %><%= post.genre.name %><% end %></td>
-                  <% if user_signed_in? %>
+                  <% if user_signed_in? && !current_user.guest_user? %>
                     <td class="post-item text-center"><%= link_to post.category, tagsearches_search_path(content: post.category) %></td>
                   <% else %>
                     <td class="text-center"><%= post.category %>
@@ -49,7 +49,8 @@
             </table>
             <div class=" row col">
               <div class="col"><%= link_to "詳細を見る", post_path(post.id) %></div>
-              <div class="offset-md-5 offset-sm-3">コメント件数： <%= post.post_comments.count %></div>
+              <div class="offset-md-1 offset-sm-1">コメント件数： <%= post.post_comments.count %></div>
+              <div class="offset-md-1 offset-sm-1"><%= render "public/favorites/iine", post: post %></div>
             </div>
           </div>
         </div>

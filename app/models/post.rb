@@ -3,6 +3,7 @@ class Post < ApplicationRecord
   belongs_to :user
   belongs_to :genre
   has_many :post_comments,dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   validates :name, presence: true
   validates :introduction, presence: true, length: { maximum: 200 }
@@ -25,6 +26,11 @@ class Post < ApplicationRecord
     elsif method == 'perfect'
       Post.where('name = ? OR introduction = ?', content, content)
     end
+  end
+
+  #指定されたユーザが特定の投稿（Postインスタンス）をいいねしているかどうかを判定
+  def favorited_by?(user)
+    favorites.exists?(user_id: user.id)
   end
 
   private
