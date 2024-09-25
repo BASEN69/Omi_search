@@ -47,7 +47,7 @@
           <%= link_to '新規投稿', new_post_path, class: 'btn btn-primary' %><br><br>
         <% else %>
           <%= link_to '新規登録', new_user_registration_path, class: 'btn btn-primary' %> | <%= link_to 'ログイン', new_user_session_path, class: 'btn btn-success' %><br><br>
-          <%= link_to 'ゲストでログイン', sessions_guest_sign_in_path, class: 'btn btn-secondary' %><br>
+          <%= link_to 'ゲストでログイン', sessions_guest_sign_in_path, class: 'btn btn-secondary', method: :post %><br>
           <small>※一部機能が使用可能です。</small>
         <% end %>
         </p>
