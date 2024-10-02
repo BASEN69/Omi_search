@@ -1,4 +1,4 @@
-<div class="container">
+<!--<div class="container">
   <div class="row">
     <div class="col-lg-10 col-md-9 col-sm-12">
       <h2 class="mb-5"><%= @user == current_user ? "#{@user.nick_name} さんのマイページ" : "#{@user.nick_name}　さんの投稿一覧" %></h2>
@@ -99,7 +99,7 @@
             </div>
           </div>
         <% end %>
-        <%= paginate @posts, class: "pagination justify-content-center" %>
+        <%= paginate @favorite_posts, class: "pagination justify-content-center" %>
       </div>
     </div>
      <%= render 'public/genres/genre_lists' %>
