@@ -15,6 +15,4 @@ class Public::GenresController < ApplicationController
     @longitude = @genre.longitude
   end
 
-
-
 end
