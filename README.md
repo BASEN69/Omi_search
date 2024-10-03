@@ -25,7 +25,8 @@
   - 定番のお土産に飽きが生じている方が使用
 
 ## 設計書
-後ほど作成予定
+  - https://docs.google.com/spreadsheets/d/1B0OIsPUFokJigxOslyjE--GWveckCXousCJZPDHppb4/edit?usp=sharing
+  - https://drive.google.com/file/d/1IgMmZNmjreMVCK54WNnEai04H_VYH6-t/view?usp=sharing
 
 ### 使用素材
 - いらすとや（２０件未満）
