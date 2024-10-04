@@ -54,7 +54,7 @@
                       <div class=" row col">
                         <div class="col"><%= link_to "詳細を見る", post_path(post.id) %></div>
                         <div class="offset-md-1 offset-sm-1">コメント件数： <%= post.post_comments.count %></div>
-                        <div class="offset-md-1 offset-sm-1"><%= render "public/favorites/iine", post: post %></div>
+                        <div class="offset-md-1 offset-sm-1" id="favorite_iine_<%= post.id %>"><%= render "public/favorites/iine", post: post %></div>
                       </div>
                     </div>
                   </div>
