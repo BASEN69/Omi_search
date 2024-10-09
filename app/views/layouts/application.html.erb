@@ -32,6 +32,9 @@
                     <i class="fa-solid fa-paste"></i> 投稿一覧 <% end %>
                   <% if user_signed_in? %>
                     <% if current_user.guest_user? %>
+                      <a class="dropdown-item"><s><i class="fa-solid fa-user"></i> マイページ</s></a>
+                      <a class="dropdown-item"><s><i class="fas fa-heart"  style="color: red;"></i> いいね履歴</s></a>
+                      <a class="dropdown-item"><s><i class="fa-solid fa-plus"></i> 新規投稿</s></a>
                     <% else %>
                       <%= link_to mypage_path, class: 'dropdown-item' do %>
                         <i class="fa-solid fa-user"></i> マイページ <% end %>
