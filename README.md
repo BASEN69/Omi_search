@@ -33,7 +33,7 @@
 - Photock
 
 ## 開発環境
-- OS：Linux（CentOS)
+- OS：Linux 2（CentOS)
 - 言語：HTML,CSS,Ruby,javascript
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
