@@ -34,7 +34,7 @@
 
 ## 開発環境
 - OS：Linux（CentOS)
-- 言語：HTML,CSS,Ruby
+- 言語：HTML,CSS,Ruby,javascript
 - フレームワーク：Ruby on Rails
 - JSライブラリ：jQuery
 - IDE：Cloud9
