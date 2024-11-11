@@ -41,13 +41,65 @@
     <% end %>
     <div class="col-md-12">
       <h3>都道府県</h3>
-      <ul class="list-group">
-        <% Genre.all.each do |genre| %>
-          <li class="list-group-item">
-            <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
-          </li>
-        <% end %>
+      <ul id="tab-menu" class="list-group">
+        <li class="list-group-item big-tag"><a href="#tab1" class="">北海道<br><span>▼</span>東北地方</a></li>
+        <div id="tab1" class="tab">
+          <% Genre.all[0..6].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab2" class=""><span>▼</span> 関東地方</a></li>
+        <div id="tab2" class="tab">
+          <% Genre.all[7..13].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab3" class=""><span>▼</span> 中部地方</a></li>
+        <div id="tab3" class="tab">
+          <% Genre.all[14..22].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab4" class=""><span>▼</span> 近畿地方</a></li>
+        <div id="tab4" class="tab">
+          <% Genre.all[23..29].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab5" class=""><span>▼</span> 中国地方</a></li>
+        <div id="tab5" class="tab">
+          <% Genre.all[30..34].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab6" class=""><span>▼</span> 四国地方</a></li>
+        <div id="tab6" class="tab">
+          <% Genre.all[35..38].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
+        <li class="list-group-item big-tag"><a href="#tab7" class=""><span>▼</span> 九州地方<br>沖縄</a></li>
+        <div id="tab7" class="tab">
+          <% Genre.all[39..46].each do |genre| %>
+            <li class="list-group-item">
+              <%= link_to "#{genre.name} (#{genre.posts.count})", genre_path(genre.id) %>
+            </li>
+          <% end %>
+        </div>
       </ul>
     </div>
   </div>
 </div>
+<%= javascript_pack_tag 'genre' %>
