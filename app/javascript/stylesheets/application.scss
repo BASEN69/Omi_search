@@ -97,6 +97,28 @@
   width: 100%;
 }
 
+.big-tag {
+    text-align: center;
+    border: 1px solid #000;
+
+  }
+
+.big-tag a {
+  color: black;
+}
+
+/* 初期状態で矢印は普通 */
+#tab-menu a span {
+  display: inline-block;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease; /* 変化の */
+}
+
+/* activeクラスが付与された場合、矢印を逆さにする */
+#tab-menu .active span {
+  transform: rotate(180deg); /* ▼を逆さにする */
+}
+
 /* スマホ用のメディアクエリ */
 @media (max-width: 767px) {
   /*ロゴのサイズ変更*/
@@ -159,6 +181,7 @@
     width: 15%!important;
   }
 
+
 }
 /* タブレット用のメディアクエリ */
 @media (max-width: 991px) {
@@ -207,19 +230,7 @@
     text-align: center;
   }
 
-  //.post-item, .post-item-category, .post-item-user, .comment-item{
-  //  writing-mode: vertical-rl; /* 縦書き */
-  //  text-orientation: upright; /* 文字を縦向きに表示 */
-  //  width: 15%!important;
-  //}
 
-  //.post-item-star{
-  //  width: 30%!important;
-  //}
-
-  //.post-item-edit{
-  //  width: 15%!important;
-  //}
 
 }
 
